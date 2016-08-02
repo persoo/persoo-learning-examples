@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Targeting Demo</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../demo-all.css" rel="stylesheet" media="screen">
+
+	<!-- set variables we pass to Persoo ------------------------------------------------ -->
+	<script type="text/javascript">
+		// Page properties and variables passed from backend server
+		var measure = {
+				product:'none'
+		};
+	</script>
+
+	<!-- load Persoo library ----------------------------------------------------------- -->
+	<script>
+		<%= persooClientLoader %>
+
+		// Commands
+		persoo('send', measure);// Send query to Persoo
+	</script>
+</head>
+<body>
+    <div class="container-fluid">
+    	<div class="row-fluid">
+		    <div class="col-md-2" id="localNavigation">
+    			<!--Sidebar content-->
+    		</div>
+    		<div class="col-md-10">
+    			<!--Body content-->
+    			<h1>Targeting examples</h1>
+
+				
+				<p>Some offers are based on your behavior - what you have visited, how much you were interested in something, ...
+				<br>Other offers are using general facts like the current date, time, your geographical location, the source of your visit, ...
+				</p>
+				<p>Follow instructions below and see what offers are targeted at you.
+				</p>
+
+				<div class="row-fluid">
+					<div class="col-md-6">
+						<ol>
+						<li>Red offer on the right depends on the day of the week (it serves you daily menu).
+						<li>Visit cool product page and come back. You will see green offer for customers interested in cool products. 
+						<li><a href="#" class="btn btn-default" onclick="persoo('send', 'buttonClicked')">Click</a> this button at least three times to see blue offer.						
+						</ol>
+					</div>
+					<div class="col-md-6" id="targetedActions">
+						<b>Personalized offers for you:</b>
+					</div>
+				</div>
+    		</div>
+    	</div>
+    </div>
+
+	<!-- jQuery + Twitter Bootstrap + Persoo Demo Navigations + show debug console -->
+	<script src="../demo-all.js" type="text/javascript"></script>
+</body>
+</html>

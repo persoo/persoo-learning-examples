@@ -1,0 +1,118 @@
+[
+{
+    "itemID": "11506",
+    "itemGroupHash": "ERA1548",
+    "itemGroupID": "11506",
+    "title": "Dětská Kšiltovka New Era League Basic Child New York Yankees Scarlet/White 9FORTY CHILD Strapback červená / bílá / červená",
+    "description": "Dětská Kšiltovka New Era League Basic Child New York Yankees Scarlet/White 9FORTY CHILD Strapback",
+
+    "hierarchy": "Čepice:Kšiltovky",
+
+    "brand": "New Era",
+    "categoryID": "ksiltovky",
+    "categorytext": "Oblečení a móda | Módní doplňky | Kšiltovky",
+    
+    "link": "https://www.snapbacks.cz/11506-detska-ksiltovka-new-era-league-basic-child-new-york-yankees-scarletwhite-9forty-child-strapback/",
+    "imageLink": "https://i.snapbacks.cz/noRW_/eshop/items/u5/11506_small_76aeae115d2b1a94.JPG",
+    
+    "price": 359,
+    "priceOriginal": 359,
+    
+    "colors": [
+        "červená"
+    ],
+    "available": 23,
+    "ean": "885429051457",    
+    "barvaHlavni": "červená",
+    "barvaKsiltSpodni": "červená",
+    "barvaVedlejsi": "bílá"
+},
+{
+    "itemID": "15890",
+    "itemGroupHash": "ERA2100",
+    "itemGroupID": "15890",
+
+    "brand": "New Era",
+    "categoryID": "ksiltovky",
+    "hierarchy": "Čepice:Kšiltovky",
+    "categorytext": "Oblečení a móda | Módní doplňky | Kšiltovky",
+    "title": "Kšiltovka New Era Tonal New York Yankees Navy Snapback modrá / modrá",
+    "description": "Kšiltovka New Era Tonal New York Yankees Navy Snapback",    
+        
+    "link": "https://www.snapbacks.cz/15890-ksiltovka-new-era-tonal-new-york-yankees-navy-snapback/",
+    "imageLink": "https://i.snapbacks.cz/noRW_/eshop/items/6x/15890_small_31d9607ea3ccaa14.jpg",
+
+    "price": 699,
+    "priceOriginal": 699,
+    
+    "colors": [
+        "modrá"
+    ],
+    "ean": "190290675672",
+    "available": 6,
+    "barvaHlavni": "modrá",
+    "barvaKsiltSpodni": "modrá",
+    "barvaVedlejsi": "---",
+},
+{
+    "itemID": "15787",
+    "itemGroupHash": "ZPH151",
+    "itemGroupID": "15787",    
+    
+    "available": 5,
+    "barvaHlavni": "žlutá",
+    "barvaKsiltSpodni": "žlutá",
+    "barvaVedlejsi": "---",
+    "brand": "Zephyr",
+    
+    "categoryID": "ksiltovky",
+    
+    "categorytext": "Oblečení a móda | Módní doplňky | Kšiltovky",
+    "colors": [
+        "žlutá"
+    ],
+    "description": "Kšiltovka Zephyr Blank Dad Washed Gold Strapback",    
+    "ean": "TX7634819",
+    "hierarchy": "Čepice:Kšiltovky",
+    "imageLink": "https://i.snapbacks.cz/noRW_/eshop/items/qt/15787_small_80574cc0c6615746.jpg",
+    
+    "link": "https://www.snapbacks.cz/15787-ksiltovka-zephyr-blank-dad-washed-gold-strapback/",
+   
+    "price": 370,
+    "priceLevel": "low",
+    "priceOriginal": 370,
+    
+    "title": "Kšiltovka Zephyr Blank Dad Washed Gold Strapback žlutá / žlutá",
+},
+{
+    "available": 2,
+    "barvaHlavni": "červená",
+    "barvaKsiltSpodni": "zelená",
+    "barvaVedlejsi": "bílá",
+    "brand": "Diamond Supply Co.",
+    
+    "categoryID": "ksiltovky",
+    "categorytext": "Oblečení a móda | Módní doplňky | Kšiltovky",
+    "colors": [
+        "červená"
+    ],    
+    "description": "Kšiltovka Diamond Supply Co. OG Script Red Snapback",
+    
+    "ean": "201600229130",
+    "hierarchy": "Čepice:Kšiltovky",
+    "imageLink": "https://i.snapbacks.cz/noRW_/eshop/items/5o/15697_small_f9518ded416a781b.jpg",
+    "itemGroupHash": "DMD541",
+    "itemGroupID": "15697",
+    "itemID": "15697",
+    
+    "link": "https://www.snapbacks.cz/15697-ksiltovka-diamond-supply-co.-og-script-red-snapback/",
+    
+    "price": 1290,
+    "priceLevel": "high",
+    "priceOriginal": 1290,
+    
+    "title": "Kšiltovka Diamond Supply Co. OG Script Red Snapback červená / bílá / zelená",
+}
+
+
+]

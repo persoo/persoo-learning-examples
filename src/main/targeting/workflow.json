@@ -1,0 +1,95 @@
+{
+    "_ak": "demo6skgsp868kri6f8ckh9h",
+    "_env": "p",
+    "nodes": {
+        "coolProductInterest": {
+            "class": "CounterOperator"            
+        },
+        "triggerCoolProductAd": {
+            "class": "CallFunction",
+            "args": {
+                "coolProductInterest": "coolProductInterest.result.eventCount"
+            },
+            "config": {
+                    "function": "messageVisitedCoolProduct",
+                    "args": ["coolProductInterest"]
+            }
+        },
+        "buttonClickCounter": {
+            "class": "CounterOperator"
+        },
+        "triggerClickedThreeTimes": {
+            "class": "CallFunction",
+            "args": {
+                "buttonClickCount": "buttonClickCounter.result.eventCount"
+            },
+            "config": {
+                "function":"messageClickedThreeTimes",
+                "args":["buttonClickCount"]
+            }
+        },
+        "pageviewCounter": {
+            "class": "CounterOperator"
+        },
+        "expandedDate": {
+            "class": "ScriptOperator",
+            "args": {
+                "timestamp": "session.lastEvent._timestamp"
+            },
+            "config": {
+                "reads": ["timestamp"],
+                "writes": ["expandedDate.day", "expandedDate.hour"],
+                "source": "function process(io) {var d = new Date(io.timestamp); var weekday=new Array(7); weekday[0]='Sunday';weekday[1]='Monday';weekday[2]='Tuesday';weekday[3]='Wednesday';weekday[4]='Thursday';weekday[5]='Friday';weekday[6]='Saturday';io.expandedDate.day = weekday[d.getDay()]; io.expandedDate.hour = d.getHours() }"
+            }
+        },
+        "export": {
+            "class": "ExportVariables",
+            "args": {
+                "expandedDate": "expandedDate"
+            },
+            "config": {
+                "export": ["expandedDate"]
+            }
+        },
+        "triggerOfferOfTheDay": {
+            "class": "CallFunction",
+            "args": {
+                "day": "expandedDate.day"
+            },
+            "config": {                
+                "function":"offerOfTheDay",
+                "args":["day"]
+            }
+        }
+    },
+    "workflows": {
+        "main": [
+            "expandedDate",
+            {
+                "ref": "coolProductInterest",
+                "condition": "session.lastEvent.product == 'coolproduct'"
+            },
+            {
+                "ref": "buttonClickCounter",
+                "condition": "session.lastEvent._event == 'buttonClicked'"
+            },
+            {
+                "ref": "pageviewCounter",
+                "condition": "session.lastEvent._event == 'pageview'"
+            },
+            {
+                "ref": "triggerClickedThreeTimes",
+                "condition": "buttonClickCounter.result.eventCount >= 3"
+            },
+            {
+                "ref": "triggerCoolProductAd",
+                "condition": "coolProductInterest.result.eventCount != null"
+            },
+            {
+                "ref": "triggerOfferOfTheDay",
+                "condition": "expandedDate.day != null"
+            },
+            "export"
+        ]
+    }
+}

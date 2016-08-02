@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cool Product | Targeting Demo</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../demo-all.css" rel="stylesheet" media="screen">
+
+	<!-- set variables we pass to Persoo ------------------------------------------------ -->
+	<script type="text/javascript">
+		// Page properties and variables passed from backend server
+		var measure = {
+				product:'coolproduct'
+		};
+	</script>
+
+	<!-- load Persoo library ----------------------------------------------------------- -->
+	<script>
+		<%= persooClientLoader %>
+
+		// Commands
+		persoo('send', measure);// Send query to Persoo
+	</script>
+</head>
+<body>
+    <div class="container-fluid">
+    	<div class="row-fluid">
+		    <div class="span2" id="localNavigation">
+    			<!--Sidebar content-->
+    		</div>
+    		<div class="span10">
+    			<!--Body content-->
+    			<h1>Cool product</h1>
+
+				<p>
+				This page contains a cool product.
+				<p>
+				By visiting this page you have shown interest in our cool product.
+				<p>
+				Now you can go back to the main page.
+    		</div>
+    	</div>
+    </div>
+
+	<!-- jQuery + Twitter Bootstrap + Persoo Demo Navigations + show debug console -->
+	<script src="../demo-all.js" type="text/javascript"></script>
+</body>
+</html>

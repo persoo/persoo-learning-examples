@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Triggering functions | Persoo tutorial</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../demo-all.css" rel="stylesheet" media="screen">
+
+	<!-- set variables we pass to Persoo ------------------------------------------------ -->
+	<script type="text/javascript">
+		// Page properties and variables passed from backend server
+		var dataLayer = [{
+		}];
+	</script>
+
+	<!-- load Persoo library ----------------------------------------------------------- -->
+	<script>
+		<%= persooClientLoader %>
+
+		// Commands
+		persoo('send', dataLayer);
+	</script>
+</head>
+<body>
+    <div class="container-fluid">
+    	<div class="row-fluid">
+		    <div id="localNavigation" class="span2">
+    			<!--Sidebar content-->
+    		</div>
+    		<div id="main" class="span8">
+    			<!--Body content-->
+    			<h1>Triggering functions and exporting data</h1>
+
+				<div  class="well">
+				Triggering function may be used
+				<ul>
+					<li>as a smart tag management (add tags that report something to your favorite web analytics,
+					to AdWords, affiliate system, ...)
+					<li>to trigger 3rd party add-ons (open an online chat with a relevant offer,
+					show a survey, show a feedback form, ...)
+					<li>to modify the page content (change the offer in an advert box, add text to an HTML element, ...)
+				</ul>
+				</div>
+
+				<div  class="well">
+				Data exports may be used
+				<ul>
+					<li>when you need raw data and want to use them as you wish
+				</ul>
+				</div>
+
+
+				<h2>Triggering functions</h2>
+
+				<p>Data sent to Persoo are processed using a workflow you had configured in Persoo Admin.
+				If your workflow decides to trigger a function, the function call including parameters is returned
+				in Persoo response and executes when the response arrives.
+
+				<p>Note: to be correct, Persoo client checks if function definitions are loaded.
+				If loaded, it triggers the function; otherwise it waits until all functions load.
+				So you can enjoy asynchronous loading of all resources without needing to worry
+				that you will miss something.
+
+				<p>A function can be loaded in three ways:
+				<ul>
+					<li>You add the function to <code>actions.js</code> in Persoo Admin.
+					This has the advantage that you can choose it from many predefined functions.
+					And, you are independent of developers: you can deploy functions yourself.
+					<li>You register the function in your page using
+					<pre class="prettyprint lang-js">persoo('addAction', name, func);</pre>
+					where 'name' is the name configured in the workflow and 'func' is the javascript function
+					to be triggered and defined in your page.
+					<li>You register <code>yourActions.js</code> containing trigger functions using
+					<pre class="prettyprint lang-js">
+// notify Persoo client to wait for it
+persoo('actionScript', 'register', 'yourActions.js');
+// nofify Persoo client, that it is loaded
+persoo('actionScript', 'loaded', 'yourActions.js');
+
+</pre>
+				</ul>
+
+				<h2>Exporting data</h2>
+
+				<p>Data sent to Persoo are processed using a workflow you had configured in Persoo Admin.
+				If your workflow exports some data, they are returned to your page
+				when the response arrives. You can access the data in 'persoo.data' variable.
+
+				<p>If you need to be notified when the response arrives, register your onLoadHandler using the command
+				<pre class="prettyprint lang-js">persoo('onLoad', yourOnLoadFunction);</pre>
+
+				<p>OnLoad handler always binds to the last request you've sent to Persoo. For example, if you call
+				<pre class="prettyprint lang-js">
+persoo('send', 'event1');
+persoo('onLoad', onLoadHandler1);
+persoo('send', 'event2');
+persoo('onLoad', onLoadHandler1);
+</pre>
+				<p>"onLoadHandler1" is triggered when the response to "event1" arrives,
+				and "onLoadHandler2" is triggered when the response to "event2" arrives.
+
+    		</div>
+    		<div id="tips" class="span2">
+    			<!--Tips and messages -->
+    			<!--
+    			<div class="alert alert-info">
+  				Tip:
+				</div>
+				-->
+
+    		</div>
+    	</div>
+    </div>
+
+	<!-- jQuery + Twitter Bootstrap + Persoo Demo Navigations + show debug console -->
+	<script src="../demo-all.js" type="text/javascript"></script>
+</body>
+</html>

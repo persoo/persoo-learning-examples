@@ -1,0 +1,29 @@
+{
+  "name": "persoo-learning-examples",
+  "version": "0.0.1",
+  "description": "Demo websites to learn to implement Persoo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/persoo/persoo-learning-examples",
+  "homepage": "http://persoo.cz",
+  "author": {
+    "name": "Kuba",
+    "url": "http://persoo.cz"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-qunit": "^1.2.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-exec": "^1.0.0",
+    "grunt-replace": "^1.0.1"
+  }
+}
