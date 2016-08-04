@@ -1,6 +1,8 @@
 var persooDemo = persooDemo || {};
 
 persooDemo.navigation = {
+	'Demo template': 'demoTemplate',
+	'eShop': 'eshop' /*,
 	'Imports': {
 		'Import Product Feed': 'ch1.1-simpleProductFeed',
 		'Import Preprocessing': 'ch1.2-importPreprocessing'
@@ -28,7 +30,5 @@ persooDemo.navigation = {
 		'Tags': 'ch1.1-simpleProductFeed',
 		'Exports': 'ch1.2-importPreprocessing'
 	},
-	
-	'How to': 'how-to/',
-	'Targeting': 'targeting/'
+	*/
 };

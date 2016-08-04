@@ -19,44 +19,10 @@ function persooAddActions(document, window){
 	// List of generic actions:
 	//------------------------------------------------------------------------------------------------------------------
 	
-	function appendDivOnce( whereId, divId, divClass, divHTML ){
-		// if element does not exist 
-		if( document.getElementById(divId) == null ){
-			var parent = document.getElementById(whereId);
-			var box = document.createElement('div');
-			box.id = divId;
-			box.className = divClass;
-			box.innerHTML = divHTML;
-			parent.appendChild(box);
-		}
-	}
 	
 	//------------------------------------------------------------------------------------------------------------------
 	// List of user defined actions:
 	//------------------------------------------------------------------------------------------------------------------
-	
-	a.offerOfTheDay = function(day){
-		appendDivOnce('targetedActions',
-				'offerOfTheDay',	// id
-				"alert alert-error",// class
-				'Cool products on sale! Only on '+day+'!' // content
-		);		
-	};
-	a.messageClickedThreeTimes = function(){
-		appendDivOnce('targetedActions',
-				'clickedThreeTimes',	// id
-				"alert alert-info",// class
-				'You clicked the button at least three times.' // content
-		);		
-	};
-	a.messageVisitedCoolProduct = function(){
-		appendDivOnce('targetedActions',
-				'visitedCoolProduct',	// id
-				"alert alert-success",	// class
-				'You had visited our Cool product. Wanna buy it?' // content
-		);		
-	};
-	
 	
 	// This is needed for qunit tests
 	a.testAction = function(){

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Persoo Demos</title>
+    <title>Persoo Demo Template</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery + Twitter Bootstrap + Persoo Playground Navigations + etc -->
-    <script src="./globalConfig.js" type="text/javascript"></script>
-    <link href="./../common/persoo-demo-all.css" rel="stylesheet" media="screen">
-    <script src="./../common/persoo-demo-all.js" type="text/javascript"></script>
+    <script src="../globalConfig.js" type="text/javascript"></script>
+    <link href="../../common/persoo-demo-all.css" rel="stylesheet" media="screen">
+    <script src="../../common/persoo-demo-all.js" type="text/javascript"></script>
 
     <script type='text/javascript'>
         var persooConfig = {
@@ -44,47 +44,27 @@
             </div>
             <div class="col-md-10">
                 <!--Body content-->
-                <h1>Welcome to persoo demos</h1>
+                <h1>First page title</h1>
 
                 
-                <h2>How it works</h2>
-                <p>Play yourself with examples given in 'Solutions' or try to implement them in folder 'Excercises'.
-                Download this HTML code to your notebook. Open these html files in your browser to see the result.
-                Edit source files to realize given excercises (simple task, how to implement persoo).
+                <p>Some description of a demo.
                 </p>
-                <p>There are two directories:
-                <ul>
-                   <li><a href="../excercises/">Excercises</a> - we prepared simple excercises, which demonstrates, how persoo works and how you can implement Persoo to your web.
-                   </li>
-                   <li><a href="../solutions/">Solutions</a> - solved excersices, which you can use as demos, to see how persoo works.
-                   </li>
-                </ul>
+                <p>More instructions, as you need. References to documentation, etc.
                 </p>
 
-                <h2>In all examples you can use</h2>
-                <ul>
-                   <li><a href="https://api.jquery.com/">Persoo documentation</a>
-                   </li>
-                   <li><a href="http://docs.persoortp.apiary.io/">Persoo RTP API</a> to make your own request to Persoo REST API
-                   </li>
-                   
-                   <li><a href="https://api.jquery.com/">jQuery</a> to simplify on() listeners, DOM manipulations,...
-                   </li>
-                   <li><a href="http://getbootstrap.com/components">Twitter Bootstrap</a> for simple and nice design of basic components 
-                   </li>
-                   
-                   <li><b>template rendering lib</b>, i.e. call 
-                          <code>ejs.render('1 + 2 = <%= 1+2%> and <%= x %>', {x: 'valueX'}); </code>
-                          to get strin/HTML code '1 + 2 = 3 and valueX'
-                   </li>
-                   <li><b>utility functions</b>, i.e. call 
-                          <code>// Example: get/set apikey
-var APIKEY_COOKIE_NAME = 'persooAdminApikey';
-var apikey = QueryString.apikey || docCookies.getItem(APIKEY_COOKIE_NAME) || 'qhql07k7dh5h9l7oarrp9tlt';
-docCookies.setItem(APIKEY_COOKIE_NAME, apikey);</code>
-                          
-                   </li>
-                </ul>
+                <h2>Instructions</h2>
+                <div class="row-fluid">
+                    <div class="col-md-6">
+                        <ol>
+                        <li>Do step one.
+                        <li>Do step two 
+                        <li><a href="#" class="btn btn-default" onclick="persoo('send', 'click')">Click</a> this button at least three times to see ...                        
+                        </ol>
+                    </div>
+                    <div class="col-md-6" id="targetedActions">
+                        <b>Here you see the results of your actions:</b>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

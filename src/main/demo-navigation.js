@@ -51,7 +51,7 @@ function showPersooDemoNavigation(){
 				        '<span class="icon-bar"></span>' +
 				        '<span class="icon-bar"></span>' +
 				      '</button>' +
-				      '<a class="navbar-brand" href="' + URL_ROOT + '">Persoo Learning Demos</a>' +
+				      '<a class="navbar-brand" href="' + URL_ROOT + '..">Persoo Playground</a>' +
 				    '</div>' +				    
 				    '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
 					    '<ul class="nav navbar-nav">');
@@ -113,7 +113,7 @@ function showPersooDemoLocalNavigation(){
 
 	var navConfig = persooDemo.localNavigation;
 	var navHTML = '<ul class="nav nav-list">' +
-				  '<li class="nav-header">Demo pages:</li>';
+				  '<li class="nav-header">This demo pages:</li>';
 	var active;
 	var uniqueID=1;
 	for(var item in navConfig){
@@ -149,9 +149,6 @@ function showPersooDemoLocalNavigation(){
 			}
 		}
 	}
-	navHTML += '<li class="nav-header">Configuration:</li>' +
-			'<li><a href="workflow.json">workflow</a></li>';
-
     navHTML += '</ul>';
 
 	localNavDiv.innerHTML = navHTML;
@@ -191,7 +188,7 @@ function mountNavigationCSS(headElement) {
 	var link = document.createElement('link');
 	link.rel = 'stylesheet';
 	link.type = 'text/css';
-	link.href = URL_ROOT + 'demo-navigation.css';
+	link.href = URL_ROOT + '../../common/persoo-demo-all.css';
 	link.media = 'all';
 	headElement.appendChild(link);
 }
@@ -200,5 +197,8 @@ function mountNavigationCSS(headElement) {
 /* main */
 var headElement = document.getElementsByTagName('head')[0];
 mountNavigationCSS(headElement);
-mountTopNavigation(headElement);
+$( document ).ready(function() {
+    // FIXME use pure javascript solution
+    mountTopNavigation(headElement);
+});
 mountLocalNavigation(headElement);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cool Product | Targeting Demo</title>
+	<title>Persoo API | Persoo tutorial</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +10,8 @@
 	<!-- set variables we pass to Persoo ------------------------------------------------ -->
 	<script type="text/javascript">
 		// Page properties and variables passed from backend server
-		var measure = {
-				product:'coolproduct'
-		};
+		var dataLayer = [{
+		}];
 	</script>
 
 	<!-- load Persoo library ----------------------------------------------------------- -->
@@ -20,25 +19,47 @@
 		<%= persooClientLoader %>
 
 		// Commands
-		persoo('send', measure);// Send query to Persoo
+		persoo('send', dataLayer);
 	</script>
 </head>
 <body>
     <div class="container-fluid">
     	<div class="row-fluid">
-		    <div class="span2" id="localNavigation">
+		    <div id="localNavigation" class="span2">
     			<!--Sidebar content-->
     		</div>
-    		<div class="span10">
+    		<div id="main" class="span8">
     			<!--Body content-->
-    			<h1>Cool product</h1>
+    			<h1>Persoo API</h1>
 
-				<p>
-				This page contains a cool product.
-				<p>
-				By visiting this page you have shown interest in our cool product.
-				<p>
-				Now you can go back to the main page.
+
+
+
+				<h2>Utils</h2>
+
+				<ul>
+
+				<li>Runs custom function when <code>persoo.js</code> loads and processes the command queue:
+					<pre class="prettyprint lang-js">
+//call function(param1, param2, ..., paramN);
+persoo(function, param1, param2,...,paramN);</pre>
+				</ul>
+
+				<h2>Notes</h2>
+
+				The following ways of passing arguments are equivalent:
+				<pre class="prettyprint lang-js">
+persoo('command', param1, param2, {a:1, b:2},{c:3},{d:4,e:5});
+persoo('command', param1, param2, {a:1, b:2,c:3,d:4,e:5});
+</pre>
+
+    		</div>
+    		<div id="tips" class="span2">
+    			<!--Tips and messages -->
+    			<div class="alert alert-info">
+  				Tip:
+				</div>
+
     		</div>
     	</div>
     </div>

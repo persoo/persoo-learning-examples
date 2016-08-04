@@ -13,16 +13,19 @@ module.exports = function (grunt) {
 	                  'src/lib/bootstrap/css/bootstrap.min.css',
 	                  'src/main/demo-navigation.css'
 	            ],
-	            dest: 'common/demo-all.css'
+	            dest: 'common/persoo-demo-all.css'
 	        },
 	        demoAllJS: {
 	            src: [
 	                  'src/lib/jquery/jquery-1.9.1.min.js',
 	                  'src/lib/bootstrap/js/bootstrap.min.js',   // depends on jQuery
 	                  'src/main/demo-nav-config.js',
-	                  'src/main/demo-navigation.js'       // depends on persoo-debug, demo-nav-config
+	                  'src/main/demo-navigation.js',       // depends on persoo-debug, demo-nav-config
+	                  'src/lib/templateRendering/persooEJS.js',
+	                  'src/lib/persooUtils.js',
+	                  'src/lib/productsDB.js'
 	            ],
-	            dest: 'common/demo-all.js'
+	            dest: 'common/persoo-demo-all.js'
 	        }
 	    },
 		jshint: {
@@ -43,7 +46,7 @@ module.exports = function (grunt) {
 		}
 		},
 		watch: {
-	  		files: ['<%= jshint.files %>', 'src/main/**'],
+	  		files: ['<%= jshint.files %>', 'src/**'],
 	  		tasks: ['default', 'test']
 		},
 	
@@ -51,20 +54,30 @@ module.exports = function (grunt) {
 		// Demo and deployment
 		//
 		copy: {
+			srcToCommonDir:{
+		        files: [
+		                {expand: true, cwd:'src/main',
+		                    src: [],
+		                    dest: 'common/'},
+	                    {expand: true, cwd:'src/lib',
+	                        src: ['jquery/**', 'bootstrap/**'],
+	                        dest: 'common /'},
+	                    {expand: true, cwd:'src/',
+		                    src: ['img/**'],
+		                    dest: 'common/'}
+	                   ]
+		    },
 		    srcToSolutionsDir:{
 		        files: [
 		                {expand: true, cwd:'src/main',
 		                    src: ['*/*'],
 		                    dest: 'solutions/'},
 		                {expand: true, cwd:'src/main',
-		                    src: ['demo-nav-config.js', 'demo-navigation.js', 'demo-navigation.css', 'index.html'],
+		                    src: ['index.html'],
 		                    dest: 'solutions/'},
-	                    {expand: true, cwd:'src/lib',
-	                        src: ['jquery/**', 'bootstrap/**'],
-	                        dest: 'solutions/'},                        
-	                    {expand: true, cwd:'common',
-	                        src: ['demo-all.js', 'demo-all.css', 'debug-console/**'],
-	                        dest: 'solutions/'}
+				        {expand: true, cwd:'src/',
+				            src: ['globalConfig.js'],
+				            dest: 'solutions/'}
 	                   ]
 		    },
 		    srcToExcercisesDir:{
@@ -73,18 +86,68 @@ module.exports = function (grunt) {
 		                    src: ['*/*'],
 		                    dest: 'excercises/'},
 		                {expand: true, cwd:'src/main',
-		                    src: ['demo-nav-config.js', 'demo-navigation.js', 'demo-navigation.css', 'index.html'],
+		                    src: ['index.html'],
 		                    dest: 'excercises/'},
-	                    {expand: true, cwd:'src/lib',
-	                        src: ['jquery/**', 'bootstrap/**'],
-	                        dest: 'excercises/'},                        
-	                    {expand: true, cwd:'common',
-	                        src: ['demo-all.js', 'demo-all.css', 'debug-console/**'],
-	                        dest: 'excercises/'}
+			            {expand: true, cwd:'src/',
+			                src: ['globalConfig.js'],
+			                dest: 'excercises/'}
 	                   ]
 		    }		    
 		},
+		mysed: {
+		    removeSolutionForExcercises: {
+		    	files: "excercises/**",
+		    	path: 'excercises',
+		        pattern: 'persooSolutionStart.*persooSolutionEnd',
+		        replacement: 'place for your code',
+		        multiline: true,
+		        recursive: true
+		    }
+		},
+		sed: {
+		    removeSolutionForExcercises: {
+		    	files: "excercises/**",
+		    	path: 'excercises',
+		        pattern: 'persooSolutionStartM.*persooSolutionEndM',
+		        replacement: 'place for your code',
+		        multiline: true,
+		        recursive: true
+		    }
+		}
+		
 	});
+	
+	// FIXME commit update to sed plugin (add options for multiline, ignoreCase
+	var replace = require('replace')
+    , _ = grunt.util._
+    , log = grunt.log;
+	grunt.registerMultiTask('mysed', 'Search and replace.', function() {
+	    var data = this.data;
+
+	    if (!data.pattern) {
+	      log.error('Missing pattern property.');
+	      return;
+	    }
+
+	    if (_.isUndefined(data.replacement)) {
+	      log.error('Missing replacement property.');
+	      return;
+	    }
+
+	    data.path = data.path || '.';
+
+	    replace({
+	      regex: data.pattern
+	    , replacement: data.replacement
+	    , paths: _.isArray(data.path) ? data.path : [data.path]
+	    , recursive: data.recursive
+	    , quiet: grunt.option('verbose') ? false : true
+	    , silent: false
+	    , async: false
+	    , multiline: data.multiline
+	    , ignoreCase: false
+	    });
+	});	
 
     // Load the plugin that provides tasks.
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -93,13 +156,17 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-sed');
     grunt.loadNpmTasks('grunt-exec');
    
     grunt.registerTask('default', [ 'build' ]);  // Default task(s).
         
     grunt.registerTask('build', [
                                    'concat',
-                                   'copy:srcToSolutionsDir', 'copy:srcToExcercisesDir'                                  
+                                   'copy:srcToCommonDir',
+                                   'copy:srcToSolutionsDir',
+                                   'copy:srcToExcercisesDir',
+                                   'mysed', 'sed'
                                   ]);
 
     grunt.registerTask('test', ['build', 'jshint', /* 'qunit' */]);

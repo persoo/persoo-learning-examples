@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data collection | Persoo tutorial</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../demo-all.css" rel="stylesheet" media="screen">
+
+	<!-- set variables we pass to Persoo ------------------------------------------------ -->
+	<script type="text/javascript">
+		// Page properties and variables passed from backend server
+		var dataLayer = [{
+		}];
+	</script>
+
+	<!-- load Persoo library ----------------------------------------------------------- -->
+	<script>
+		<%= persooClientLoader %>
+
+		// Commands
+		persoo('send', dataLayer);
+	</script>
+</head>
+<body>
+    <div class="container-fluid">
+    	<div class="row-fluid">
+		    <div id="localNavigation" class="span2">
+    			<!--Sidebar content-->
+    		</div>
+    		<div id="main" class="span8">
+    			<!--Body content-->
+    			<h1>Data collection</h1>
+
+				<p>Persoo can make smart personal decisions, but it needs to get some data first.
+
+				<h2>Introduction</h2>
+
+				<p>Persoo data collection is very simple but universal. You send events by using command
+
+				<pre class="prettyprint lang-js">persoo('send', 'eventName', {paramA:valueA,...,paramZ:valueZ});</pre>
+
+				<p>The event name is for example 'pageview', 'identify', 'addToCart', ... On the server, the event is evaluated
+				using a specified workflow. In the response, the page receives data and functions to be triggered.
+				Read <a href="triggering.html">more about receiving data and triggering functions</a>.
+
+				<p><b>Passing data from webserver to Persoo</b><br>
+				The best practice is that your webserver generates javascript object, called 'dataLayer' for instance,
+				and sets the properties you need to pass to Persoo. You can pass this object directly to 'send' command.
+
+				<pre class="prettyprint lang-js">
+var dataLayer={
+	paramA: valueA,
+	paramB: valueB,
+	...
+	paramZ: valueZ
+}
+persoo('send', dataLayer);</pre>
+
+				<p>Note: if you do not specify the event name, "pageview" is used by default.
+
+				<p>Using data layer has the advantage of you not needing to wait for DOM ready event.
+				You can send data to Persoo immediately and thus receive the response earlier.
+				Such a time saving is important when you wait for a decision what to display on a page.
+
+				<p>Usually developers wait for DOMLoaded or documentReady event,
+				then collect data they need to measure (for example using jQuery), and finally send data to Persoo
+				or other web analytics.
+
+				<h2>Using data collection plugins</h2>
+				<p>There are interesting plugins which you can configure in Persoo Admin. They are included in <code>persoo.js</code>
+				depending on your configuration.
+
+				<ul>
+					<li>Forms collector - collects form fields when a form is submitted.
+					<li>Google analytics events collector - copies events sent to Google Analytics and sends them also to Persoo.
+					<li>Others ...
+				</ul>
+
+				<h2>Custom data collection</h2>
+
+				<p>In Persoo Admin, you can specify your own data collection. It is appended to <code>persoo.js</code>
+				and triggered on a specified event (Persoo loaded, DOM loaded, Document ready).
+
+				<p>This way you can bind to onClick events ... to send an event to Persoo after a user click on a HTML element, etc.
+
+    		</div>
+    		<div id="tips" class="span2">
+    			<!--Tips and messages -->
+				<!--
+				<div class="alert alert-info">
+   				Tip:
+	 			</div>
+	 			-->
+
+    		</div>
+    	</div>
+    </div>
+
+	<!-- jQuery + Twitter Bootstrap + Persoo Demo Navigations + show debug console -->
+	<script src="../demo-all.js" type="text/javascript"></script>
+</body>
+</html>

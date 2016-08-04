@@ -24,6 +24,7 @@
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-exec": "^1.0.0",
-    "grunt-replace": "^1.0.1"
+    "grunt-replace": "^1.0.1",
+    "grunt-sed": "^0.1.1"
   }
 }

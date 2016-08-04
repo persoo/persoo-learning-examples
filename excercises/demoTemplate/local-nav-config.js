@@ -1,6 +1,6 @@
 var persooDemo = persooDemo || {};
 
 persooDemo.localNavigation = {
-	'Main': 'index.html',	
-	'Cool product': 'cool-product.html'
+	'First page': 'index.html',	
+	'Second page': 'second.html'
 };
