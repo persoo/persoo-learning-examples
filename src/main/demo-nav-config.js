@@ -1,8 +1,9 @@
 var persooDemo = persooDemo || {};
 
 persooDemo.navigation = {
-	'Demo template': 'demoTemplate',
-	'eShop': 'eshop' /*,
+	'Ch1 Product Import': 'ch1-1-product-import',
+	'Ch2 Snippet': 'ch2-1-snippet',
+	'Ch3 eShop': 'eshop' /*,
 	'Imports': {
 		'Import Product Feed': 'ch1.1-simpleProductFeed',
 		'Import Preprocessing': 'ch1.2-importPreprocessing'

@@ -9,8 +9,6 @@
     <script src="../globalConfig.js" type="text/javascript"></script>
     <link href="../../common/persoo-demo-all.css" rel="stylesheet" media="screen">
     <script src="../../common/persoo-demo-all.js" type="text/javascript"></script>
-    
-    <link href="style.css" rel="stylesheet" media="screen">
 
     <!-- persooSolutionStart -->
     <script type='text/javascript'>
@@ -34,14 +32,10 @@
         arguments))},b[f].l=1*new Date,b[f].apikey=d.apikey,b[f].dataLayerName=d.dataLayerName;var c=
         a.cookie.match('(^|; )'+e+'=([^;]*)'),g=location.search.match('[?&]'+e+'=([^&]*)'),h=g?g[1]:c?c[2]:
         'p';d.settings_tolerance>0&&(setTimeout(this.finish,d.settings_tolerance),this.hideBody());var i=(
-        d.scriptsHostname||'http://scripts.persoo.cz/')+d.apikey+'/'+h;this.loadScript(i+'/actions.js'),
+        d.scriptsHostname||'//scripts.persoo.cz/')+d.apikey+'/'+h;this.loadScript(i+'/actions.js'),
         this.loadScript(i+'/persoo.js')}}}(document,window,!1,persooConfig,'persooEnvironment');persooLoader.init();
     </script>
     <!-- persooSolutionEnd -->
-    
-    <script>
-        productsDB.getCategoryTree(showCategoryTree);
-    </script>
 </head>
 <body>
     <div class="container-fluid">
@@ -51,27 +45,30 @@
             </div>
             <div class="col-md-10">
                 <!--Body content-->
-                <h1>Homepage</h1>
+                <h1>Product Import</h1>
 
                 
-                <p>This is homepage of automatically generated eshop from product feed 
-                <a href="https://s3-eu-west-1.amazonaws.com/cz.persoo.images/sampleProductFeeds/snapbacksSample.json">snapbackSample.json</a>.
+                <p>Go .
                 </p>
-
-                <div id="basketStatus"></div>
-		        <script>showBasketStatus();</script>
-
-                <div id="category-tree"></div>
-                <div id="content"></div>
-                <div class="clear-right"></div>
-                  
-                <!--   for recommendations -->
-                <div id="box1"></div>
-                <div id="box2"></div>
-                <div id="box3"></div>
-                <div id="box4"></div>
-                <div id="box5"></div>
-                           
+                
+                <h2>Instructions</h2>
+                <div class="row-fluid">
+                    <div class="col-md-6">
+                        <ol>
+                        <li>Go to Setting - imports and in the list select "products".
+                        <li>Add url <code>https://s3-eu-west-1.amazonaws.com/cz.persoo.images/sampleProductFeeds/snapbacksSample.json</code> to import url and select JSON type
+                        <li>Click to "Status" section and there click "run" import in test environment.
+                        <li>Click the status line to see details. Find "destinations" url to preview and download results.
+                        <li>Note: destinations url contains secret hashes -- set your own in Settings - Credentials - secret hash.
+                        <li>Publish changes to production.
+                        <li>Run import in production (go to Import status, and click "run" in production environment.                        
+                        </ol>
+                    </div>
+                    <div class="col-md-6" id="targetedActions">
+                        <b>Here you see the results of your actions:</b>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

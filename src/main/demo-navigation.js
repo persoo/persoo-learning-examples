@@ -31,8 +31,8 @@ function getScriptHomePath( scriptFilename ) {
 	}
 	return urlPath;
 }
-var URL_ROOT = getScriptHomePath('demo-navigation.js');
-if( URL_ROOT == './') {URL_ROOT = getScriptHomePath('demo-all.js');}
+var URL_ROOT = getScriptHomePath('globalConfig.js');
+if( URL_ROOT == './') {URL_ROOT = getScriptHomePath('persoo-demo-all.js');}
 
 
 /**
@@ -51,7 +51,7 @@ function showPersooDemoNavigation(){
 				        '<span class="icon-bar"></span>' +
 				        '<span class="icon-bar"></span>' +
 				      '</button>' +
-				      '<a class="navbar-brand" href="' + URL_ROOT + '..">Persoo Playground</a>' +
+				      '<a class="navbar-brand" href="' + URL_ROOT + '">Persoo Playground</a>' +
 				    '</div>' +				    
 				    '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
 					    '<ul class="nav navbar-nav">');
@@ -188,7 +188,7 @@ function mountNavigationCSS(headElement) {
 	var link = document.createElement('link');
 	link.rel = 'stylesheet';
 	link.type = 'text/css';
-	link.href = URL_ROOT + '../../common/persoo-demo-all.css';
+	link.href = URL_ROOT + '../common/persoo-demo-all.css';
 	link.media = 'all';
 	headElement.appendChild(link);
 }

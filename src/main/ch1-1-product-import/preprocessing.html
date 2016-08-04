@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Persoo Demo Template</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuery + Twitter Bootstrap + Persoo Playground Navigations + etc -->
+    <script src="../globalConfig.js" type="text/javascript"></script>
+    <link href="../../common/persoo-demo-all.css" rel="stylesheet" media="screen">
+    <script src="../../common/persoo-demo-all.js" type="text/javascript"></script>
+
+    <script type='text/javascript'>
+        var persooConfig = {
+            apikey: persooAccountID, // variable from globalConfig.js
+            persooName: 'persoo',
+            dataLayerName: 'dataLayer', // we recommend to share dataLayer with GTM to measure new events to all systems
+            settings_tolerance: 2000,  // for loading persoo.js
+            personalizations_tolerance: 2500,    // for showing personalizations
+        };
+    
+        /*! Persoo js client 2015-03-16 */
+        var persooLoader=function(a,b,c,d,e){var f=d.persooName,g='_persoo_hide_body';return{hideBody:
+        function(){var b=a.createElement('style'),c='body{opacity:0 !important;filter:alpha(opacity=0)'
+        +' !important;background:none !important;}',d=a.getElementsByTagName('head')[0];b.setAttribute(
+        'id',g),b.setAttribute('type','text/css'),b.styleSheet?b.styleSheet.cssText=c:b.appendChild(
+        a.createTextNode(c)),d.appendChild(b)},finish:function(){if(!c){c=!0;var b=a.getElementById(g);b&&
+        b.parentNode.removeChild(b)}},loadScript:function(b){var c=a.createElement('script');c.src=b,c.type
+        ='text/javascript',c.onerror=function(){persooLoader.finish()},a.getElementsByTagName('head')[0
+        ].appendChild(c)},init:function(){b[f]=b[f]||function(){(b[f].q=b[f].q||[]).push([].slice.call(
+        arguments))},b[f].l=1*new Date,b[f].apikey=d.apikey,b[f].dataLayerName=d.dataLayerName;var c=
+        a.cookie.match('(^|; )'+e+'=([^;]*)'),g=location.search.match('[?&]'+e+'=([^&]*)'),h=g?g[1]:c?c[2]:
+        'p';d.settings_tolerance>0&&(setTimeout(this.finish,d.settings_tolerance),this.hideBody());var i=(
+        d.scriptsHostname||'http://scripts.persoo.cz/')+d.apikey+'/'+h;this.loadScript(i+'/actions.js'),
+        this.loadScript(i+'/persoo.js')}}}(document,window,!1,persooConfig,'persooEnvironment');persooLoader.init();
+    </script>
+    
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-md-2" id="localNavigation">
+                <!--Sidebar content-->
+            </div>
+            <div class="col-md-10">
+                <!--Body content-->
+                <h1>Import preprocessing</h1>
+
+                
+                <p>Play and do magic with item fields, before you import them.
+                </p>
+                <p>More instructions, as you need. References to documentation, etc.
+                </p>
+
+                <h2>Instructions</h2>
+                <div class="row-fluid">
+                    <div class="col-md-6">
+                        <ol>
+                        <li>Go to Settings - Imports and select "products" in the list.
+                        <li>Open import preprocessing and write your javascript to extract teamName field from product title.
+                        <li>From wikipedia, you know that all team names in 1st and 2nd league are
+                            <textarea>
+var teamNames = [
+'Atlanta Hawks',
+'Boston Celtics',
+'Charlotte Bobcats',
+'Chicago Bulls',
+'Cleveland Cavaliers',
+'Dallas Mavericks',
+'Denver Nuggets',
+'Detroit Pistons',
+'Golden State Warriors',
+'Houston Rockets',
+'Indiana Pacers',
+'Los Angeles Clippers',
+'Los Angeles Lakers',
+'Memphis Grizzlies',
+'Vancouver Grizzlies',
+'Miami Heat',
+'Milwaukee Bucks',
+'Minnesota Timberwolves',
+'New Jersey Nets',
+'New Orleans Hornets',
+'New York Knicks',
+'Oklahoma City Thunder',
+'Orlando Magic',
+'Philadelphia 76ers',
+'Phoenix Suns',
+'Portland Trail Blazers',
+'Sacramento Kings',
+'San Antonio Spurs',
+'Seattle Sonics',
+'Toronto Raptors',
+'Utah Jazz',
+'Washington Wizards',
+
+'Boston Bruins',
+'Anaheim Ducks',
+'Colorado Avalanche',   
+'St. Louis Blues',      
+'San Jose Sharks',      
+'Pittsburgh Penguins',  
+'Chicago Blackhawks',   
+'Tampa Bay Lightning',  
+'Montreal Canadiens',   
+'Los Angeles Kings',    
+'Minnesota Wild',
+'New York Rangers',     
+'Philadelphia Flyers',  
+'Columbus Blue Jackets',
+'Detroit Red Wings',    
+'Dallas Stars', 
+'Washington Capitals',  
+'Phoenix Coyotes',      
+'New Jersey Devils',    
+'Nashville Predators',  
+'Ottawa Senators',      
+'Toronto Maple Leafs',  
+'Winnipeg Jets',
+'Carolina Hurricanes',  
+'Vancouver Canucks',    
+'New York Islanders',   
+'Calgary Flames',
+'Edmonton Oilers',      
+'Florida Panthers',     
+'Buffalo Sabres',
+
+'Texas Longhorns',
+'Boston College',
+
+'New York Yankees',     
+'Philadelphia Phillies',
+'Boston Red Sox',
+'Los Angeles Angels of Anaheim',
+'Chicago White Sox',    
+'Chicago Cubs', 
+'New York Mets',
+'San Francisco Giants', 
+'Minnesota Twins',
+'Detroit Tigers',
+'St. Louis Cardinals',  
+'Los Angeles Dodgers',  
+'Texas Rangers',
+'Colorado Rockies',     
+'Atlanta Braves',
+'Seattle Mariners',     
+'Milwaukee Brewers',    
+'Baltimore Orioles',    
+'Cincinnati Reds',
+'Houston Astros',
+'Oakland Athletics',    
+'Washington Nationals', 
+'Toronto Blue Jays',    
+'Miami Marlins',
+'Arizona Diamondbacks', 
+'Cleveland Indians',    
+'San Diego Padres',     
+'Pittsburgh Pirates',   
+'Tampa Bay Rays',
+'Kansas City Royals', 
+
+'Baltimore Ravens',
+'Buffalo Bills',
+'Cincinnati Bengals',
+'Cleveland Browns',
+'Denver Broncos',
+'Houston Texans',
+'Indianapolis Colts',
+'Jacksonville Jaguars',
+'Kansas City Chiefs',
+'Miami Dolphins',
+'New England Patriots',
+'New York Jets',
+'Oakland Raiders',
+'Pittsburgh Steelers',
+'San Diego Chargers',
+'Tennessee Titans',
+'Arizona Cardinals',
+'Atlanta Falcons',
+'Carolina Panthers',
+'Chicago Bears',
+'Dallas Cowboys',
+'Detroit Lions',
+'Green Bay Packers',
+'Minnesota Vikings',
+'New Orleans Saints',
+'New York Giants',
+'Philadelphia Eagles',
+'San Francisco 49ers',
+'Seattle Seahawks',
+'St. Louis Rams',
+'Tampa Bay Buccaneers',
+'Washington Redskins'
+                    ];
+                    
+   for (var i=0;i<teamNames.length;i++) {
+       var phrase = teamNames[i];
+       if (item.title.toLowerCase().indexOf(phrase.toLowerCase()) >= 0){
+           item.teamName = phrase;
+       }
+   }
+                            </textarea>                        
+                        </ol>
+                    </div>
+                    <div class="col-md-6" id="targetedActions">
+                        <b>Here you see the results of your actions:</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
