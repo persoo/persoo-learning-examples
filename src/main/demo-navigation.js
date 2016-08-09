@@ -34,14 +34,57 @@ function getScriptHomePath( scriptFilename ) {
 var URL_ROOT = getScriptHomePath('globalConfig.js');
 if( URL_ROOT == './') {URL_ROOT = getScriptHomePath('persoo-demo-all.js');}
 
+function convertNavigationStructureToList(navConfig, list, prefix) {
+	for(var i = 0; i < navConfig.length; i++){		
+		var navItem = navConfig[i];
+		var newPrefix = (prefix ? prefix + '.' : '') + (i+1);
+		if (navItem.type == 'demo') {
+			navItem.numbering = newPrefix
+			list.push(navItem);
+			
+		} else if (navItem.type == 'group') {
+			list = list.concat(convertNavigationStructureToList(navItem.children, [], newPrefix));
+		}
+	}
+	return list;
+}
+
+function getTopLinks() {
+	var topLinks = {};
+	
+	var currentPath = document.location.pathname;
+	var rootPath = URL_ROOT.replace(/.*:\/\/[^/]+\//,'/');
+	
+	var currentDemoURL = currentPath.replace(rootPath, '').replace(/\/.*/, ''); 
+	if (currentDemoURL) {
+		var list = convertNavigationStructureToList(persooDemo.navigationConfig, []);
+		for (var j = 0; j < list.length; j++) {
+			if (list[j].url == currentDemoURL) {
+				if (j > 0) {
+					var item = list[j - 1];
+					topLinks.prevURL = URL_ROOT + item.url;
+					topLinks.prevTitle = item.numbering + ' ' + item.title;
+				}
+				if (j < list.length-1) {
+					var item = list[j + 1];
+					topLinks.nextURL = URL_ROOT + item.url;
+					topLinks.nextTitle = item.numbering + ' ' + item.title;
+				}
+				break;
+			}
+		}
+	}
+	return topLinks;
+}
 
 /**
- * Top navigation contains list of all demos grouped by categories.
+ * Top navigation panel.
  */
 function showPersooDemoNavigation(){
 	var navigationDiv = document.createElement('div');
 	navigationDiv.id = "persooDemoNavigation";
-	var navHTML = ('' +
+	var topLinks = getTopLinks();
+	var navHTML = '' +
 			'<div class="navbar navbar-default">' +
 			    '<div class="container-fluid">' +
 			        '<div class="navbar-header">' +
@@ -51,56 +94,66 @@ function showPersooDemoNavigation(){
 				        '<span class="icon-bar"></span>' +
 				        '<span class="icon-bar"></span>' +
 				      '</button>' +
-				      '<a class="navbar-brand" href="' + URL_ROOT + '">Persoo Playground</a>' +
+				      '<a href="' + URL_ROOT + '"><img src="' + URL_ROOT + '/../../common/img/persoo_logo_60h.png" height="40px" style="float:left;margin:0px 15px 0 0;"></a>' +
+				      '<a class="navbar-brand" href="' + URL_ROOT + '">Playground</a>' +
 				    '</div>' +				    
 				    '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
-					    '<ul class="nav navbar-nav">');
-
-	// TODO mark active links
-
-	function generNavigation( navConfig, navHTML, level ) {
-		for(var item in navConfig){
-			if( navConfig.hasOwnProperty(item) ){
-				if( typeof navConfig[item] === 'string' ){
-					if(navConfig[item].indexOf('javascript:')==0){
-						// on click run javascript
-						navHTML += '<li><a href="' + navConfig[item] + '">' + item + '</a></li>';
-					} else {
-						// add link with correct path
-						navHTML += '<li><a href="' + URL_ROOT + navConfig[item] + '">' + item + '</a></li>';
-					}
-				} else if( typeof navConfig[item] === 'object' ){
-					if( level < 1 ){
-						navHTML += '<li class="dropdown">' +
-									'<a class="dropdown-toggle" data-toggle="dropdown" href="#">' +	item +
-									'<b class="caret"></b></a>';
-					} else {
-						navHTML += '<li class="dropdown-submenu">' +
-						'<a tabindex="-1" href="#">' + item + '</a>';
-					}
-	                navHTML += '<ul class="dropdown-menu">';
-					navHTML = generNavigation(navConfig[item], navHTML, level+1);
-	                navHTML += '</ul></li>';
-				}
-			}
-		}
-		return navHTML;
-	}
-	navHTML = generNavigation(persooDemo.navigation, navHTML, 0);
-
-	navHTML += '<li>' +
-		'<div class="btn-group navbar-form" role="group" aria-label="...">' +
-		    '<button type="button" class="btn btn-default" onclick="' + "javascript:persoo('showAdminBar');" + '">Show admin bar</button>' +
-		    '<button type="button" class="btn btn-default" onclick="' + "javascript:persoo('setEnvironment', 'test');" + '">Test environment</button>' +
-	    '</div></li>';	
-	
-	navHTML += ('' +
-					'</ul>' +
-				'</div>' + 	// navbar-collapse
+					    '<ul class="nav navbar-nav">' + 
+						     '<li>' +
+								'<div class="btn-group navbar-form" role="group" aria-label="...">' +
+								    '<button type="button" class="btn btn-default" onclick="' + "javascript:persoo('showAdminBar');" + '">Show admin bar</button>' +
+								    '<button type="button" class="btn btn-default" onclick="' + "javascript:persoo('setEnvironment', 'test');" + '">Test environment</button>' +
+								    '</div></li>' +
+                             (topLinks.prevURL ?
+					         '<li>' +
+					             '<a href="' + topLinks.prevURL + '" title="Previous demo">' + 
+					             '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>' + topLinks.prevTitle + '</a></li>' : '') +
+					         '<li><a href="' + URL_ROOT + '" title="List of available demos">' +
+					             '<span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;demo list</a>' +
+					         (topLinks.nextURL ?
+					         '<li>' +
+					             '<a href="' + topLinks.nextURL + '" title="Next demo">' + 
+					             '' + topLinks.nextTitle + '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>' : '') +
+               	        '</ul>' +
+				    '</div>' + 	// navbar-collapse
 				'</div>' + 	// fluid-container
-			'</div>');		// div.navbar
+			'</div>';		// div.navbar
 	navigationDiv.innerHTML = navHTML;
 	document.body.insertBefore(navigationDiv, document.body.firstChild);
+}
+
+/**
+ * Mount Persoo Demo navigation for HP to an element rootElement.
+ * @param navigationConfig
+ * @param rootElement
+ * @returns
+ */
+function mountPersooHPNavigation(navigationConfig, rootElement) {	
+	function generInnerNavigation(navConfig, html, level) {
+		html += '<div class="navContainer level' + level + '"><ol>';
+		for(var i = 0; i < navConfig.length; i++){
+			html += '<li>';
+			var navItem = navConfig[i];
+			if (navItem.type == 'demo') {
+				html += '<a href="' + URL_ROOT + navItem.url + '">' + navItem.title + '</a><br />';
+				html += '<p><i>' + navItem.description + '</i></p>';
+			} else if (navItem.type == 'group') {
+				html += navItem.title;
+				html += '<p><i>' + navItem.description + '</i></p>';
+				html += generInnerNavigation(navItem.children, '', level + 1);
+			}
+			html += '</li>';
+		}
+		html += '</ol></div>';
+		
+		return html;
+	}
+	var html = generInnerNavigation(navigationConfig, '', 0);
+	
+	if (typeof rootElement == 'string') {
+		rootElement = document.getElementById(rootElement);
+	}
+	rootElement.innerHTML = html;
 }
 
 /**

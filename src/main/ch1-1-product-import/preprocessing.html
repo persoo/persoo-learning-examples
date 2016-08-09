@@ -47,10 +47,17 @@
                 <h1>Import preprocessing</h1>
 
                 
-                <p>Play and do magic with item fields, before you import them.
+                <h2>Play and do magic with item fields, before you import them to Persoo</h2>
+                <p>During the product import, Persoo process each item in the following order:
+                    <a href="http://support.persoo.cz/technicky-manual/produkty/jak-probiha-import/">import item processing order</a>.
+                    Very powerful part is item preprocessing, which is realized using custom javascript function to process an item.
+                    Write whatever code you need. You can use:                    
                 </p>
-                <p>More instructions, as you need. References to documentation, etc.
-                </p>
+                <ul>
+                    <li>other fields from the item</li>
+                    <li>static lists, maps which you add as constants to the javascript function - exceptional IDs, simple rules, 
+                    small relation maps for hundreds of categories or productTypes.
+                </ul>
 
                 <h2>Instructions</h2>
                 <div class="row-fluid">
@@ -58,8 +65,9 @@
                         <ol>
                         <li>Go to Settings - Imports and select "products" in the list.
                         <li>Open import preprocessing and write your javascript to extract teamName field from product title.
-                        <li>From wikipedia, you know that all team names in 1st and 2nd league are
-                            <textarea>
+                        <li>On the wikipedia, you found all team names in 1st and 2nd league and write the following code to decide, whether product title contains some team name. 
+                            Add this code to preprocessing function.
+                            <pre>
 var teamNames = [
 'Atlanta Hawks',
 'Boston Celtics',
@@ -199,11 +207,26 @@ var teamNames = [
            item.teamName = phrase;
        }
    }
-                            </textarea>                        
+                            </pre>
+                            </li>
+                            <li>Go to import status and "Run" the import in the test environment.</li>
+                            <li>Click the import status to get destination URL with imported products.</li> 
+                            <li>Open the link in new tab in your browser. Check, that there are products with the field 'teamName'.</li>
                         </ol>
                     </div>
                     <div class="col-md-6" id="targetedActions">
-                        <b>Here you see the results of your actions:</b>
+                        <b>One imported product is:</b>
+                        <pre id="oneSampleProduct"></pre>
+                        <script>
+                            productsDB.getSampleProduct(function (data) {
+                                var elem = document.getElementById('oneSampleProduct');
+                                if (data) {
+                                	elem.innerHTML = JSON.stringify(data, false, 4);
+                                } else {
+                                    elem.innerHTML = 'You do not have any product in your Persoo account yet. Import one using instructions on the left.'
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

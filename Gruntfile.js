@@ -6,7 +6,7 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 	    pkg: grunt.file.readJSON('package.json'),    
 	          
-	    clean: ["target", "common", "solutions", "excercises"],	    
+	    clean: ["target", "common", "solutions", "excercises", "fonts"],	    
 	    concat: {
 	        demoAllCss: {
 	            src: [
@@ -61,10 +61,17 @@ module.exports = function (grunt) {
 		                    dest: 'common/'},
 	                    {expand: true, cwd:'src/lib',
 	                        src: ['jquery/**', 'bootstrap/**'],
-	                        dest: 'common /'},
+	                        dest: 'common/'},
 	                    {expand: true, cwd:'src/',
 		                    src: ['img/**'],
 		                    dest: 'common/'}
+	                   ]
+		    },
+			srcToFontsDir:{
+		        files: [
+	                    {expand: true, cwd:'src/lib/bootstrap',
+	                        src: ['fonts/**'],
+	                        dest: '.'},
 	                   ]
 		    },
 		    srcToSolutionsDir:{
@@ -164,6 +171,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
                                    'concat',
                                    'copy:srcToCommonDir',
+                                   'copy:srcToFontsDir',
                                    'copy:srcToSolutionsDir',
                                    'copy:srcToExcercisesDir',
                                    'mysed', 'sed'

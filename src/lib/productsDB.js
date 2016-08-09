@@ -15,6 +15,24 @@ var productsDB = {
 		window.persoo('send', 'getCategoryTree', {
 			_w : 'catalogue_getCategoryTree'
 		}, callback);
+	},
+	getSampleProduct: function(callback) {
+		var myThis = this;
+		this.getCategoryTree(function (data){
+			console.log(data);
+			if (data.topCategories && data.topCategories.length > 0) {
+			   var sampleCategoryID = data.topCategories[0].categoryID;
+			   myThis.getProductsByCategoryID(sampleCategoryID, function(data){
+				   if (data.categoryProducts && data.categoryProducts.length > 0) {
+					   callback(data.categoryProducts[0]);
+				   } else {
+					   callback(null);
+				   }
+			   });
+			} else {
+				callback(null);
+			}
+		})
 	}
 };
 // FIXME refactor this old code

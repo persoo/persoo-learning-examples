@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Persoo Demo Template</title>
+    <title>Persoo: products import</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,6 @@
     <link href="../../common/persoo-demo-all.css" rel="stylesheet" media="screen">
     <script src="../../common/persoo-demo-all.js" type="text/javascript"></script>
 
-    <!-- persooSolutionStart -->
     <script type='text/javascript'>
         var persooConfig = {
             apikey: persooAccountID, // variable from globalConfig.js
@@ -35,7 +34,6 @@
         d.scriptsHostname||'//scripts.persoo.cz/')+d.apikey+'/'+h;this.loadScript(i+'/actions.js'),
         this.loadScript(i+'/persoo.js')}}}(document,window,!1,persooConfig,'persooEnvironment');persooLoader.init();
     </script>
-    <!-- persooSolutionEnd -->
 </head>
 <body>
     <div class="container-fluid">
@@ -46,10 +44,14 @@
             <div class="col-md-10">
                 <!--Body content-->
                 <h1>Product Import</h1>
-
                 
-                <p>Go .
+                <p>First you need to import products to Persoo. Either you already have a XML product feed 
+                for price comparators (Heureka, Zbozi,cz) or for Google Merchant Center or Facebook advertisements.
                 </p>
+                
+                <p>After having products in Persoo, you can start using them in all offer types (recommendation boxes, emails, web widgets, ...).
+                Persoo collects user interactions with products only for product IDs (we call them itemID) and needs to regularly read your
+                product feed to learn about current price, title, link, image link,...</p>
                 
                 <h2>Instructions</h2>
                 <div class="row-fluid">
@@ -57,15 +59,27 @@
                         <ol>
                         <li>Go to Setting - imports and in the list select "products".
                         <li>Add url <code>https://s3-eu-west-1.amazonaws.com/cz.persoo.images/sampleProductFeeds/snapbacksSample.json</code> to import url and select JSON type
-                        <li>Click to "Status" section and there click "run" import in test environment.
+                        <li>Click on "Status" section in top bar and then click "run" import in test environment to import the products from the JSON.
                         <li>Click the status line to see details. Find "destinations" url to preview and download results.
                         <li>Note: destinations url contains secret hashes -- set your own in Settings - Credentials - secret hash.
                         <li>Publish changes to production.
                         <li>Run import in production (go to Import status, and click "run" in production environment.                        
                         </ol>
+                        Note: what about adding screenshots here?
                     </div>
                     <div class="col-md-6" id="targetedActions">
-                        <b>Here you see the results of your actions:</b>
+                        <b>One imported product is:</b>
+                        <pre id="oneSampleProduct"></pre>
+                        <script>
+                            productsDB.getSampleProduct(function (data) {
+                                var elem = document.getElementById('oneSampleProduct');
+                                if (data) {
+                                	elem.innerHTML = JSON.stringify(data, false, 4);
+                                } else {
+                                    elem.innerHTML = 'You do not have any product in your Persoo account yet. Import one using instructions on the left.'
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

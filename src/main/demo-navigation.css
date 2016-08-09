@@ -5,3 +5,8 @@
 	margin-right: -6px;
 	opacity: .25;	
 }
+
+/* Navigation on Homepage */
+#hpMainNavigation ol { counter-reset: item }
+#hpMainNavigation li { display: block }
+#hpMainNavigation li:before { content: counters(item, ".") " "; counter-increment: item }

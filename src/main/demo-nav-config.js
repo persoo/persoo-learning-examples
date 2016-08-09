@@ -1,5 +1,32 @@
 var persooDemo = persooDemo || {};
 
+persooDemo.navigationConfig = [
+    {
+    	type: 'demo',
+    	title: 'Product Import',
+    	description: 'How to import product to Persoo. Magics with item preprocessing and other tricks.',
+    	url: 'ch1-1-product-import'
+    },
+    {
+    	type: 'group',
+    	title: 'Data Collection',
+    	description: 'How to report events to Persoo.',
+    	children: [
+            {
+	           	type: 'demo',
+	           	title: 'Persoo Snippet',
+	           	description: 'Using javascript snippet to be included to HTML page.',
+	           	url: 'ch2-1-snippet'
+            },
+    	]
+    },
+    {
+    	type: 'demo',
+    	title: 'Eshop - product recommendations',
+    	description: 'Setting dataLayer in simple eshop. Displaying simple boxes with product recommendations',
+    	url: 'eshop'
+    }    
+];
 persooDemo.navigation = {
 	'Ch1 Product Import': 'ch1-1-product-import',
 	'Ch2 Snippet': 'ch2-1-snippet',
