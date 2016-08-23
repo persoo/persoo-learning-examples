@@ -83,7 +83,7 @@ function showProductDetail(data) {
 				+ '</a></div>';
 	}
 	html += '  </div>';
-	html += '  <div class="button buy" onclick="addToBasketInCookies(\'' + 
+	html += '  <div class="button buy" onclick="addToBasketInCookies(\'' +
 				item.itemID + '\', ' + item.price + '); showBasketStatus();"><a href="#">Koupit</a></div>';
 	html += '</div>';
 	html += '<div class="more-info">ITEM as JSON:(<span class="link" onclick="showDebug()">show/hide</span> | <span class="link" onclick="foldDebug()">fold</span>)';
@@ -104,10 +104,10 @@ function showProductDetail(data) {
 	setTimeout(function() {
 		editor.getSession().foldAll(1, null, 1);
 	}, 50);
-	
+
     persoo('send', 'getProducts', {_w: 'catalogue_getProducts', ids:item.alsoBought});
 	persoo('onLoad', function(){showProductMiniBox('alsoBoughtProducts');});
-	
+
     persoo('send', 'getProducts', {_w: 'catalogue_getProducts', ids:item.alsoViewed});
 	persoo('onLoad', function(){showProductMiniBox('alsoViewedProducts');});
 }
@@ -116,7 +116,7 @@ function showProductMiniBox(containerId){
 	var container = document.getElementById(containerId);
 	var items = persoo.data.products;
 	if (items) {
-    	var html = "";	
+    	var html = "";
     	for (var i = 0; i < items.length; i++) {
     		html += renderProductMiniCard(items[i]);
     	}
@@ -145,12 +145,12 @@ function renderProductCard(item) {
 				+ '</a></span>';
 	}
 	html += '  </div>';
-	html += '  <div class="button buy" onclick="addToBasketInCookies(\'' + 
+	html += '  <div class="button buy" onclick="addToBasketInCookies(\'' +
 				item.itemID + '\', ' + item.price + '); showBasketStatus();"><a href="#">Koupit</a></div>';
 	html += '</div>';
 	html += '</div>';
-	
-	
+
+
 	return html;
 }
 
@@ -169,7 +169,7 @@ function renderProductMiniCard(item) {
 	html += '  <div class="link">Preview: <a href="detail.html?product=' + item.itemGroupID + '">detail produktu</a></div>';
 	html += '</div>';
 	html += '</div>';
-	
+
 	return html;
 }
 
@@ -185,44 +185,45 @@ function showCategoryList() {
 	} else {
 		html = '<h1>Category (' + QueryString.category + ')</h1>';
 	}
-	
-	
+
+
 	html += '<div class="breadcrumb"><a href="homepage.html">Home</a>';
 	if (category && category.categoryIDs) {
     	for ( var cat = 0; cat < category.categoryIDs.length; cat++) {
     		html += ' &gt; <a href="category.html?category=' + category.categoryIDs[cat]
     				+ '">' + category.categoryIDs[cat] + '</a>';
-    	}	
+    	}
 	}
-	html += ' (' + (category && category.size ? category.size : '?') + ' items in category)</div>';	
+	html += ' (' + (category && category.size ? category.size : '?') + ' items in category)</div>';
 
 	for (var i = 0; i < items.length; i++) {
 		html += renderProductCard(items[i]);
 	}
 
 	html += '<div style="clear:both;">';
-	
+
 	categoryListElement.innerHTML = html;
 }
 
 function showCategoryTree() {
-	var categoryTreeElement = document.getElementById('category-tree');	
+	var categoryTreeElement = document.getElementById('category-tree');
 	var category = persoo.data.topCategories;
 
 	var html = '<h2>Category tree</h2>';
-	
-	
-	html += '<ul>';	
+
+
+	html += '<ul>';
 	for ( var i = 0; i < category.length; i++) {
 		var cat = category[i];
 		var categoryLabel = (cat.title ? cat.title : (cat.CATEGORYTEXT ? cat.CATEGORYTEXT : cat.categoryID));
 		html += '<li>';
 		html += '<a href="category.html?category=' + cat.categoryID + '">' + categoryLabel + '</a>';
+		html += '<br>';
 		html += ' (' + (cat.size ? cat.size : '?') + ' items)</div>';
 		html += '</li>'
-	}	
+	}
 	html += '</ul>';
-	
+
 	categoryTreeElement.innerHTML = html;
 }
 
@@ -230,7 +231,7 @@ function showBasketStatus() {
 	var basketStatusElem = document.getElementById('basketStatus');
 	var basketItems = getBasketItems();
 	var html = "";
-	
+
 	if (basketItems) {
 		html += "<div class='basketBox'>";
 		html += 'Basket (' + sumBasketItems(basketItems) + ' Kč) contains ';
@@ -242,5 +243,5 @@ function showBasketStatus() {
 	} else {
 		html += "<div class='basketBox'>Basket is empty.</div>"
 	}
-    basketStatusElem.innerHTML = html;	
+    basketStatusElem.innerHTML = html;
 }
