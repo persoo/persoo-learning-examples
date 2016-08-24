@@ -218,7 +218,7 @@ function showCategoryTree() {
 		var categoryLabel = (cat.title ? cat.title : (cat.CATEGORYTEXT ? cat.CATEGORYTEXT : cat.categoryID));
 		html += '<li>';
 		html += '<a href="category.html?category=' + cat.categoryID + '">' + categoryLabel + '</a>';
-		html += '<br>';
+		html += '<li>';
 		html += ' (' + (cat.size ? cat.size : '?') + ' items)</div>';
 		html += '</li>'
 	}
