@@ -1,17 +1,18 @@
 module.exports = function (grunt) {
 	//file types to copy from scr/main to target
 	var copyFileTypes = ['json','css','js','jpg','gif','png'];
-	
-	// Project configuration.    
+
+	// Project configuration.
 	grunt.initConfig({
-	    pkg: grunt.file.readJSON('package.json'),    
-	          
-	    clean: ["target", "common", "solutions", "excercises", "fonts"],	    
+	    pkg: grunt.file.readJSON('package.json'),
+
+	    clean: ["target", "common", "solutions", "excercises", "fonts"],
 	    concat: {
 	        demoAllCss: {
 	            src: [
 	                  'src/lib/bootstrap/css/bootstrap.min.css',
-	                  'src/main/demo-navigation.css'
+	                  'src/main/demo-navigation.css',
+										'src/main/frytol.css'
 	            ],
 	            dest: 'common/persoo-demo-all.css'
 	        },
@@ -49,7 +50,7 @@ module.exports = function (grunt) {
 	  		files: ['<%= jshint.files %>', 'src/**'],
 	  		tasks: ['default', 'test']
 		},
-	
+
 		//
 		// Demo and deployment
 		//
@@ -99,7 +100,7 @@ module.exports = function (grunt) {
 			                src: ['globalConfig.js'],
 			                dest: 'excercises/'}
 	                   ]
-		    }		    
+		    }
 		},
 		mysed: {
 		    removeSolutionForExcercises: {
@@ -121,9 +122,9 @@ module.exports = function (grunt) {
 		        recursive: true
 		    }
 		}
-		
+
 	});
-	
+
 	// FIXME commit update to sed plugin (add options for multiline, ignoreCase
 	var replace = require('replace')
     , _ = grunt.util._
@@ -154,7 +155,7 @@ module.exports = function (grunt) {
 	    , multiline: data.multiline
 	    , ignoreCase: false
 	    });
-	});	
+	});
 
     // Load the plugin that provides tasks.
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -165,9 +166,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-sed');
     grunt.loadNpmTasks('grunt-exec');
-   
+
     grunt.registerTask('default', [ 'build' ]);  // Default task(s).
-        
+
     grunt.registerTask('build', [
                                    'concat',
                                    'copy:srcToCommonDir',

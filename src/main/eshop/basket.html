@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery + Twitter Bootstrap + Persoo Playground Navigations + etc -->
     <script src="../globalConfig.js" type="text/javascript"></script>
+    <link href="../img/favicon.png" rel="icon" type="image/png">
     <link href="../../common/persoo-demo-all.css" rel="stylesheet" media="screen">
     <script src="../../common/persoo-demo-all.js" type="text/javascript"></script>
 
@@ -18,7 +19,7 @@
             settings_tolerance: 2000,  // for loading persoo.js
             personalizations_tolerance: 2500,    // for showing personalizations
         };
-    
+
         /*! Persoo js client 2015-03-16 */
         var persooLoader=function(a,b,c,d,e){var f=d.persooName,g='_persoo_hide_body';return{hideBody:
         function(){var b=a.createElement('style'),c='body{opacity:0 !important;filter:alpha(opacity=0)'
@@ -34,7 +35,7 @@
         d.scriptsHostname||'http://scripts.persoo.cz/')+d.apikey+'/'+h;this.loadScript(i+'/actions.js'),
         this.loadScript(i+'/persoo.js')}}}(document,window,!1,persooConfig,'persooEnvironment');persooLoader.init();
     </script>
-    
+
 </head>
 <body>
     <div class="container-fluid">
@@ -46,7 +47,7 @@
                 <!--Body content-->
                 <h1>First page title</h1>
 
-                
+
                 <p>Some description of a demo.
                 </p>
                 <p>More instructions, as you need. References to documentation, etc.
@@ -57,8 +58,8 @@
                     <div class="col-md-6">
                         <ol>
                         <li>Do step one.
-                        <li>Do step two 
-                        <li><a href="#" class="btn btn-default" onclick="persoo('send', 'click')">Click</a> this button at least three times to see ...                        
+                        <li>Do step two
+                        <li><a href="#" class="btn btn-default" onclick="persoo('send', 'click')">Click</a> this button at least three times to see ...
                         </ol>
                     </div>
                     <div class="col-md-6" id="targetedActions">
@@ -68,5 +69,8 @@
             </div>
         </div>
     </div>
+    <footer>
+      <span>&copy; Persoo.cz 2016</span>
+    </footer>
 </body>
 </html>

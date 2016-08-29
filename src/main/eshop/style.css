@@ -49,7 +49,7 @@ pre.basket {
 }
 #box-detail .main-image img {
     max-width: 400px;
-    max-height: 400px;  
+    max-height: 400px;
 }
 #box-detail > .main-info {
 	background-color: lightblue;
@@ -57,9 +57,9 @@ pre.basket {
     float:right;
 }
 #box-detail .more-info {
-    clear:both;    
+    clear:both;
 }
-#box-detail .more-info .editor {    
+#box-detail .more-info .editor {
     height: 400px;
 }
 
@@ -68,24 +68,25 @@ pre.basket {
 .productCard {
 	border: 1px solid lightgrey;
 	padding: 10px;
-	
-	width: 230px;
-	height: 430px;
+  width: 33.33333%;
+	height: 439px;
 	float:left;
 	overflow: hidden;
 }
 .productCard .image {
     width: 200px;
     height: 200px;
-    text-align: center;    
+    text-align: center;
 }
 .productCard img {
 	max-width: 200px;
-	max-height: 200px;	
+	max-height: 200px;
 }
 .productCard .name {
     margin-bottom: 20px;
-    font-weight: bold;    
+    font-weight: bold;
+		max-height: 40px;
+		overflow: hidden;
 }
 
 
@@ -98,7 +99,7 @@ pre.basket {
 .productMiniCard {
     border: 1px solid lightgrey;
     padding: 10px;
-    
+
     width: 125px;
     height: 200px;
     float:left;
@@ -107,15 +108,15 @@ pre.basket {
 .productMiniCard .image {
     width: 100px;
     height: 100px;
-    text-align: center;    
+    text-align: center;
 }
 .productMiniCard img {
     max-width: 100px;
-    max-height: 100px;  
+    max-height: 100px;
 }
 .productMiniCard .name {
     margin-bottom: 10px;
-    font-weight: bold;    
+    font-weight: bold;
 }
 
 

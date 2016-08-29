@@ -3,10 +3,42 @@
 	float: right;
 	margin-top: 2px;
 	margin-right: -6px;
-	opacity: .25;	
+	opacity: .25;
 }
 
 /* Navigation on Homepage */
+#hpMainNavigation{ background-color: #fafafa;padding: 15px 20px 15px 0;}
 #hpMainNavigation ol { counter-reset: item }
-#hpMainNavigation li { display: block }
-#hpMainNavigation li:before { content: counters(item, ".") " "; counter-increment: item }
+#hpMainNavigation li { display: block; margin-bottom: 20px;}
+#hpMainNavigation li.level1{margin-bottom: 15px;}
+#hpMainNavigation li:before {font-size: 1.6em; min-width: 30px; padding-right: 15px; float: left; content: counters(item, ".") " "; counter-increment: item }
+#hpMainNavigation li a{font-size: 1.4em;}
+#hpMainNavigation p{margin:0 0 10px;}
+#hpMainNavigation p i{background-color:#f5f5f5;padding:3px 5px;border-radius:5px;border:1px solid #e8e8e8;}
+
+/*Navigation on left*/
+#localNavigation{padding:0!important;}
+#localNavigation ul{padding-bottom:5px;}
+#localNavigation ul li.nav-header{text-align:center;font-size:16px;background-color:#ddd;padding:3px 0;margin-bottom:5px;}
+#localNavigation ul li a{color:#828282;padding:5px 15px;}
+#localNavigation ul li.active a{color:#444;}
+
+/*top navigation*/
+.navbar-nav button{color:white;}
+.navbar-nav button:nth-of-type(1){background-color:#BD1E51;}
+.navbar-nav button:nth-of-type(2){background-color:#F8CA10;}
+
+
+#persooDemoNavigation .navbar{margin-bottom:0;}
+#persooDemoNavigation .navbar .navbar-collapse .navbar-nav{float:right;margin-right:-15px;}
+#persooDemoNavigation .navbar .navbar-collapse .navbar-nav .navbar-form{padding:0;}
+#persooDemoNavigation .navbar-header{padding:5px 0;}
+#persooDemoNavigation .navbar-brand{padding:0px 15px;height:40px;line-height:40px;}
+
+#persooDemoNavigation2 .navbar{border:0;}
+#persooDemoNavigation2 .navbar-collapse{text-align:center;}
+#persooDemoNavigation2 .navbar-collapse ul.navbar-nav{width:100%;margin:0 -15px;display:inline-block;float:none;}
+#persooDemoNavigation2 .navbar-collapse ul.navbar-nav li{top:0;}
+#persooDemoNavigation2 .navbar-collapse ul.navbar-nav li:nth-of-type(1){position:absolute;left:0;display:inline-block;}
+#persooDemoNavigation2 .navbar-collapse ul.navbar-nav li:nth-of-type(2){position:absolute;width:120px;margin-left:-60px;display:inline-block;}
+#persooDemoNavigation2 .navbar-collapse ul.navbar-nav li:nth-of-type(3){position:absolute;right:0;display:inline-block;}
