@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery + Twitter Bootstrap + Persoo Playground Navigations + etc -->
     <script src="../globalConfig.js" type="text/javascript"></script>
+    <link href="../img/favicon.png" rel="icon" type="image/png">
     <link href="../../common/persoo-demo-all.css" rel="stylesheet" media="screen">
     <script src="../../common/persoo-demo-all.js" type="text/javascript"></script>
 
@@ -18,7 +19,7 @@
             settings_tolerance: 2000,  // for loading persoo.js
             personalizations_tolerance: 2500,    // for showing personalizations
         };
-    
+
         /*! Persoo js client 2015-03-16 */
         var persooLoader=function(a,b,c,d,e){var f=d.persooName,g='_persoo_hide_body';return{hideBody:
         function(){var b=a.createElement('style'),c='body{opacity:0 !important;filter:alpha(opacity=0)'
@@ -34,7 +35,7 @@
         d.scriptsHostname||'http://scripts.persoo.cz/')+d.apikey+'/'+h;this.loadScript(i+'/actions.js'),
         this.loadScript(i+'/persoo.js')}}}(document,window,!1,persooConfig,'persooEnvironment');persooLoader.init();
     </script>
-    
+
 </head>
 <body>
     <div class="container-fluid">
@@ -46,28 +47,30 @@
                 <!--Body content-->
                 <h1>Import preprocessing</h1>
 
-                
-                <h2>Play and do magic with item fields, before you import them to Persoo</h2>
+
+                <h2 class="subtitle">Play and do magic with item fields, before you import them to Persoo</h2>
                 <p>During the product import, Persoo process each item in the following order:
                     <a href="http://support.persoo.cz/technicky-manual/produkty/jak-probiha-import/">import item processing order</a>.
                     Very powerful part is item preprocessing, which is realized using custom javascript function to process an item.
-                    Write whatever code you need. You can use:                    
+                    Write whatever code you need. You can use:
                 </p>
                 <ul>
                     <li>other fields from the item</li>
-                    <li>static lists, maps which you add as constants to the javascript function - exceptional IDs, simple rules, 
+                    <li>static lists, maps which you add as constants to the javascript function - exceptional IDs, simple rules,
                     small relation maps for hundreds of categories or productTypes.
                 </ul>
 
-                <h2>Instructions</h2>
-                <div class="row-fluid">
-                    <div class="col-md-6">
-                        <ol>
-                        <li>Go to Settings - Imports and select "products" in the list.
-                        <li>Open import preprocessing and write your javascript to extract teamName field from product title.
-                        <li>On the wikipedia, you found all team names in 1st and 2nd league and write the following code to decide, whether product title contains some team name. 
-                            Add this code to preprocessing function.
-                            <pre>
+                <div class="instructions zero">
+                  <h2>Instructions</h2>
+                  <ol>
+                    <li><div>1</div><div><span>Go to Settings - Imports and select "products" in the list.</span></div></li>
+                    <li><div>2</div><div><span>Open import preprocessing and write your javascript to extract teamName field from product title.</span></div></li>
+                    <li><div>3</div><div><span>On the wikipedia, you found all team names in 1st and 2nd league and write the following code to decide, whether product title contains some team name. Add this code to preprocessing function.</span></div></li>
+                  </ol>
+                </div>
+                <div class="row-fluid script zero">
+                    <h2>Code</h2>
+                    <pre>
 var teamNames = [
 'Atlanta Hawks',
 'Boston Celtics',
@@ -104,68 +107,68 @@ var teamNames = [
 
 'Boston Bruins',
 'Anaheim Ducks',
-'Colorado Avalanche',   
-'St. Louis Blues',      
-'San Jose Sharks',      
-'Pittsburgh Penguins',  
-'Chicago Blackhawks',   
-'Tampa Bay Lightning',  
-'Montreal Canadiens',   
-'Los Angeles Kings',    
+'Colorado Avalanche',
+'St. Louis Blues',
+'San Jose Sharks',
+'Pittsburgh Penguins',
+'Chicago Blackhawks',
+'Tampa Bay Lightning',
+'Montreal Canadiens',
+'Los Angeles Kings',
 'Minnesota Wild',
-'New York Rangers',     
-'Philadelphia Flyers',  
+'New York Rangers',
+'Philadelphia Flyers',
 'Columbus Blue Jackets',
-'Detroit Red Wings',    
-'Dallas Stars', 
-'Washington Capitals',  
-'Phoenix Coyotes',      
-'New Jersey Devils',    
-'Nashville Predators',  
-'Ottawa Senators',      
-'Toronto Maple Leafs',  
+'Detroit Red Wings',
+'Dallas Stars',
+'Washington Capitals',
+'Phoenix Coyotes',
+'New Jersey Devils',
+'Nashville Predators',
+'Ottawa Senators',
+'Toronto Maple Leafs',
 'Winnipeg Jets',
-'Carolina Hurricanes',  
-'Vancouver Canucks',    
-'New York Islanders',   
+'Carolina Hurricanes',
+'Vancouver Canucks',
+'New York Islanders',
 'Calgary Flames',
-'Edmonton Oilers',      
-'Florida Panthers',     
+'Edmonton Oilers',
+'Florida Panthers',
 'Buffalo Sabres',
 
 'Texas Longhorns',
 'Boston College',
 
-'New York Yankees',     
+'New York Yankees',
 'Philadelphia Phillies',
 'Boston Red Sox',
 'Los Angeles Angels of Anaheim',
-'Chicago White Sox',    
-'Chicago Cubs', 
+'Chicago White Sox',
+'Chicago Cubs',
 'New York Mets',
-'San Francisco Giants', 
+'San Francisco Giants',
 'Minnesota Twins',
 'Detroit Tigers',
-'St. Louis Cardinals',  
-'Los Angeles Dodgers',  
+'St. Louis Cardinals',
+'Los Angeles Dodgers',
 'Texas Rangers',
-'Colorado Rockies',     
+'Colorado Rockies',
 'Atlanta Braves',
-'Seattle Mariners',     
-'Milwaukee Brewers',    
-'Baltimore Orioles',    
+'Seattle Mariners',
+'Milwaukee Brewers',
+'Baltimore Orioles',
 'Cincinnati Reds',
 'Houston Astros',
-'Oakland Athletics',    
-'Washington Nationals', 
-'Toronto Blue Jays',    
+'Oakland Athletics',
+'Washington Nationals',
+'Toronto Blue Jays',
 'Miami Marlins',
-'Arizona Diamondbacks', 
-'Cleveland Indians',    
-'San Diego Padres',     
-'Pittsburgh Pirates',   
+'Arizona Diamondbacks',
+'Cleveland Indians',
+'San Diego Padres',
+'Pittsburgh Pirates',
 'Tampa Bay Rays',
-'Kansas City Royals', 
+'Kansas City Royals',
 
 'Baltimore Ravens',
 'Buffalo Bills',
@@ -200,22 +203,25 @@ var teamNames = [
 'Tampa Bay Buccaneers',
 'Washington Redskins'
                     ];
-                    
+
    for (var i=0;i<teamNames.length;i++) {
        var phrase = teamNames[i];
        if (item.title.toLowerCase().indexOf(phrase.toLowerCase()) >= 0){
            item.teamName = phrase;
        }
    }
-                            </pre>
-                            </li>
-                            <li>Go to import status and "Run" the import in the test environment.</li>
-                            <li>Click the import status to get destination URL with imported products.</li> 
-                            <li>Open the link in new tab in your browser. Check, that there are products with the field 'teamName'.</li>
-                        </ol>
+                      </pre>
                     </div>
-                    <div class="col-md-6" id="targetedActions">
-                        <b>One imported product is:</b>
+                    <div class="instructions zero">
+                      <ol>
+                        <li><div>4</div><div><span>Go to import status and "Run" the import in the test environment.</span></div></li>
+                        <li><div>5</div><div><span>Click the import status to get destination URL with imported products.</span></div></li>
+                        <li><div>6</div><div><span>Open the link in new tab in your browser. Check, that there are products with the field 'teamName'.</span></div></li>
+                      </ol>
+                    </div>
+
+                    <div class="script zero" id="targetedActions" style="margin-bottom:40px;">
+                            <h2>One imported product is</h2>
                         <pre id="oneSampleProduct"></pre>
                         <script>
                             productsDB.getSampleProduct(function (data) {
@@ -232,5 +238,8 @@ var teamNames = [
             </div>
         </div>
     </div>
+    <footer>
+      <span>&copy; Persoo.cz 2016</span>
+    </footer>
 </body>
 </html>

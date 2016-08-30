@@ -209,7 +209,7 @@ function showCategoryTree() {
 	var categoryTreeElement = document.getElementById('category-tree');
 	var category = persoo.data.topCategories;
 
-	var html = '<h2>Category tree</h2>';
+	var html = '<h3>Category tree</h3>';
 
 
 	html += '<ul>';
@@ -218,8 +218,8 @@ function showCategoryTree() {
 		var categoryLabel = (cat.title ? cat.title : (cat.CATEGORYTEXT ? cat.CATEGORYTEXT : cat.categoryID));
 		html += '<li>';
 		html += '<a href="category.html?category=' + cat.categoryID + '">' + categoryLabel + '</a>';
-		html += '<li>';
-		html += ' (' + (cat.size ? cat.size : '?') + ' items)</div>';
+		html += '<br>';
+		html += ' (' + (cat.size ? cat.size : '?') + ' items)';
 		html += '</li>'
 	}
 	html += '</ul>';
