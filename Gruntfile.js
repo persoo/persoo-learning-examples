@@ -22,6 +22,7 @@ module.exports = function (grunt) {
 	                  'src/lib/bootstrap/js/bootstrap.min.js',   // depends on jQuery
 	                  'src/main/demo-nav-config.js',
 	                  'src/main/demo-navigation.js',       // depends on persoo-debug, demo-nav-config
+										'src/main/fixed-navigation.js',
 	                  'src/lib/templateRendering/persooEJS.js',
 	                  'src/lib/persooUtils.js',
 	                  'src/lib/productsDB.js'
