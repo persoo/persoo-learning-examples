@@ -18,7 +18,7 @@
             settings_tolerance: 2000,  // for loading persoo.js
             personalizations_tolerance: 2500,    // for showing personalizations
         };
-    
+
         /*! Persoo js client 2015-03-16 */
         var persooLoader=function(a,b,c,d,e){var f=d.persooName,g='_persoo_hide_body';return{hideBody:
         function(){var b=a.createElement('style'),c='body{opacity:0 !important;filter:alpha(opacity=0)'
@@ -34,7 +34,7 @@
         d.scriptsHostname||'http://scripts.persoo.cz/')+d.apikey+'/'+h;this.loadScript(i+'/actions.js'),
         this.loadScript(i+'/persoo.js')}}}(document,window,!1,persooConfig,'persooEnvironment');persooLoader.init();
     </script>
-    
+
 </head>
 <body>
     <div class="container-fluid">
@@ -45,17 +45,17 @@
             <div class="col-md-10">
                 <!--Body content-->
                 <h1>Welcome to Persoo Demos and Examples</h1>
-                
-                <p>In the IT world, we love learning by doing. Nobody want to study long manual. 
-                Many developers love simple examples which they can copy, modify and use for their need. 
+
+                <p>In the IT world, we love learning by doing. Nobody want to study long manual.
+                Many developers love simple examples which they can copy, modify and use for their need.
                 Thus we had created a few simple demos to demonstrate basic Persoo features. Just select the demo you like,
-                follow its instructions (a few steps) to see how persoo works or how to implement these features with Persoo. 
-                Have fun.                
+                follow its instructions (a few steps) to see how persoo works or how to implement these features with Persoo.
+                Have fun.
                 </p>
-                
-                <p>You can use this site as <b>simple eshop for Persoo evaluation</b> 
-                (you do not need to install your own eshop just for evaluation). 
-                More over, you can import your own product feed to Persoo and then play with your own products  
+
+                <p>You can use this site as <b>simple eshop for Persoo evaluation</b>
+                (you do not need to install your own eshop just for evaluation).
+                More over, you can import your own product feed to Persoo and then play with your own products
                 in these demos.</p>
 
                 <h2>Table of Contents</h2>
@@ -63,28 +63,28 @@
                 <script>
                     mountPersooHPNavigation(persooDemo.navigationConfig, 'hpMainNavigation');
                 </script>
-                
-                
+
+
                 <h2>How it works?</h2>
-                <p>You can download this demo as HTML files and open them locally in your browser 
+                <p>You can download this demo as HTML files and open them locally in your browser
                 (feed free to edit anything - it is your playground).
-                Edit file 'globalConfig.js' and set persooAccountID to your persoo account ID. 
-                Afterwards you can realize changes through your persoo account in <a href="https://admin.persoo.cz">persoo administration.</a> 
-                
+                Edit file 'globalConfig.js' and set persooAccountID to your persoo account ID.
+                Afterwards you can realize changes through your persoo account in <a href="https://admin.persoo.cz">persoo administration.</a>
+
                 <p>The concept of these demos is that they are excercises you to learn to work with Persoo.
                    In the first demos, you learn how to install Persoo to your website. In the following demos you will learn how to configure features through Persoo administration.
                    There are two main directories in this project folder:
                 <ul>
-                   <li><a href="../excercises/">Excercises</a> - containing task description, instructions to finish the task. HTML files in this demo are waiting for you to add the correct code.   
+                   <li><a href="../excercises/">Excercises</a> - containing task description, instructions to finish the task. HTML files in this demo are waiting for you to add the correct code.
                    </li>
                    <li><a href="../solutions/">Solutions</a> - solved excersices, which you can use as demos/examples, to see how Persoo works and what can be done very easily with Persoo.
-                   Note: if you bind this demo with a new persoo account, some features may not be configured for your account. You persoo demo version instead. There you cannot configure 
+                   Note: if you bind this demo with a new persoo account, some features may not be configured for your account. You persoo demo version instead. There you cannot configure
                    the account using Persoo administration, but you can see the desired functionality.
                    </li>
                 </ul>
                 </p>
-                
-                <p>If you want to set Persoo accountID (apikey) for all demos/excercises, 
+
+                <p>If you want to set Persoo accountID (apikey) for all demos/excercises,
                 do it in file "globalConfig.js" and use javascript variable "persooAccountID" which is available in all demos.
                 More over, to make demos work on localhost with file:// protocol, change in persoo snippets "//scripts.persoo.cz/" to "http://scripts.persoo.cz/".
                 (In production, persoo uses the same protocol as displayed page, i.e. both http:// and https://, but file:// protocol will not find persoo resources).
@@ -99,24 +99,26 @@
                 </ul>
 
                 <h3>In all examples you can use</h3>
-                Following libraries and utility functions are loaded automatically in the page header.                
-                <ul>                   
+                Following libraries and utility functions are loaded automatically in the page header.
+                <ul>
                    <li><a href="https://api.jquery.com/">jQuery</a> to simplify on() listeners, DOM manipulations,...
                    </li>
-                   <li><a href="http://getbootstrap.com/components">Twitter Bootstrap</a> for simple and nice design (grid system, basic components, ...) 
-                   </li>                   
-                   <li><b>utility functions</b>, i.e. 
+                   <li><a href="http://getbootstrap.com/components">Twitter Bootstrap</a> for simple and nice design (grid system, basic components, ...)
+                   </li>
+                   <li><b>utility functions</b>, i.e.
                         <ul>
-                           <li>cookie manipulation</li> 
-                           <li>parsed query string from url</li> 
+                           <li>cookie manipulation</li>
+                           <li>parsed query string from url</li>
                            <li>template rendering (see <a href="http://ejs.co/">ejs</a> or <a href="http://support.persoo.cz/technicky-manual/sablonovaci-jazyk/">persoo templates</a>)</li>
-                        </ul> 
-                        <pre>
+                        </ul>
+                        <div class="row-fluid script" id="targetedActions">
+                            <h2>Script</h2>
+                            <pre>
 // Template rendering
 var html = ejs.render('1 + 2 = <%= 1+2%> and <%= x %>', {x: 'valueX'});
-   // html will contain string '1 + 2 = 3 and valueX' 
-                          
-// QueryString contains parsed parameters from URL (from document.location.search)                          
+   // html will contain string '1 + 2 = 3 and valueX'
+
+// QueryString contains parsed parameters from URL (from document.location.search)
 var myparam = QueryString.myparam;
 
 // Cookies manipulation
@@ -125,17 +127,21 @@ docCookies.getItem(name); // to get cookie value or null
 docCookies.removeItem(name[, path[, domain]]) // to delete cookie
 docCookies.hasItem(name)  // check if cookies contain cookie with given name
 docCookies.keys()  // get all available cookies names
-                          
+
 // Example: get/set apikey
 var APIKEY_COOKIE_NAME = 'persooAdminApikey';
 var apikey = QueryString.apikey || docCookies.getItem(APIKEY_COOKIE_NAME);
 docCookies.setItem(APIKEY_COOKIE_NAME, apikey);
-</pre>
-                          
+                            </pre>
+                        </div>
+
                    </li>
                 </ul>
             </div>
         </div>
     </div>
+    <footer>
+      <span>&copy; Persoo.cz 2016</span>
+    </footer>
 </body>
 </html>
