@@ -43,7 +43,7 @@
             <div class="col-md-2" id="localNavigation">
                 <!--Sidebar content-->
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 content">
                 <!--Body content-->
                 <h1>First page title</h1>
 
@@ -53,17 +53,22 @@
                 <p>More instructions, as you need. References to documentation, etc.
                 </p>
 
-                <h2>Instructions</h2>
                 <div class="row-fluid">
                     <div class="col-md-6">
+                      <div class="instructions">
+                        <h2>Instructions</h2>
                         <ol>
-                        <li>Do step one.
-                        <li>Do step two
-                        <li><a href="#" class="btn btn-default" onclick="persoo('send', 'click')">Click</a> this button at least three times to see ...
+                          <li><div>1</div><div><span>Do step one.</span></div></li>
+                          <li><div>2</div><div><span>Do step two</span></div></li>
+                          <li><div>2</div><div><span><a href="#" class="btn btn-default" onclick="persoo('send', 'click')">Click</a> this button at least three times to see ...</span></div></li>
                         </ol>
+                      </div>
                     </div>
                     <div class="col-md-6" id="targetedActions">
-                        <b>Here you see the results of your actions:</b>
+                      <div class="script">
+                        <h2>Here you see the results of your actions</h2>
+                        <pre>Nejsou zde data</pre>
+                      </div>
                     </div>
                 </div>
             </div>
