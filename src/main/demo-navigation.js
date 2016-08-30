@@ -124,17 +124,19 @@ function showPersooDemoNavigation2(){
 			    '<div class="container-fluid">' +
 				    '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
 					    '<ul class="nav navbar-nav">' +
+								'<li>' +
                    (topLinks.prevURL ?
-					         '<li>' +
 					             '<a href="' + topLinks.prevURL + '" title="Previous demo">' +
-					             '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>' + topLinks.prevTitle + '</a></li>' : '') +
+					             '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>' + topLinks.prevTitle + '</a>' : '') +
+							  '</li>' +
 					         '<li><a href="' + URL_ROOT + '" title="List of available demos">' +
 					             '<span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;demo list</a>' +
+							  '<li>' +
 					         (topLinks.nextURL ?
-					         '<li>' +
 					             '<a href="' + topLinks.nextURL + '" title="Next demo">' +
-					             '' + topLinks.nextTitle + '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>' : '') +
-               	        '</ul>' +
+					             '' + topLinks.nextTitle + '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>' : '') +
+							  '</li>' +
+     	        '</ul>' +
 				    '</div>' + 	// navbar-collapse
 				'</div>' + 	// fluid-container
 			'</div>';		// div.navbar
