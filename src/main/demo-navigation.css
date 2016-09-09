@@ -33,14 +33,12 @@
 #persooDemoNavigation .navbar .navbar-collapse .navbar-nav .navbar-form{padding:0;}
 #persooDemoNavigation .navbar-header{padding:5px 0;}
 #persooDemoNavigation .navbar-brand{padding:0px 15px;height:40px;line-height:40px;}
-#persooDemoNavigation.fixed{margin-bottom:70px;}
 
-#persooDemoNavigation2 .navbar{border:0;}
+#persooDemoNavigation2{position:fixed;width:100%;z-index:1000;bottom:0;}
+#persooDemoNavigation2 .navbar{border:1px solid #e7e7e7;margin:0;}
 #persooDemoNavigation2 .navbar-collapse{text-align:center;}
 #persooDemoNavigation2 .navbar-collapse ul.navbar-nav{width:100%;margin:0 -15px;display:inline-block;float:none;}
 #persooDemoNavigation2 .navbar-collapse ul.navbar-nav li{top:0;}
 #persooDemoNavigation2 .navbar-collapse ul.navbar-nav li:nth-of-type(1){position:absolute;left:0;display:inline-block;}
 #persooDemoNavigation2 .navbar-collapse ul.navbar-nav li:nth-of-type(2){position:absolute;width:120px;margin-left:-60px;display:inline-block;}
 #persooDemoNavigation2 .navbar-collapse ul.navbar-nav li:nth-of-type(3){position:absolute;right:0;display:inline-block;}
-#persooDemoNavigation2.fixed{position:fixed;top:0;width: 100%;z-index: 1000;}
-#persooDemoNavigation2.fixed .navbar{border-bottom:1px solid #e7e7e7;}

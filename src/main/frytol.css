@@ -26,7 +26,7 @@ Border (GRAY)
 .button.buy:hover{background-color:blue;}
 
 /*instructions*/
-.instructions{margin:20px 0 40px;}
+.instructions{margin:20px 0 40px;word-break:break-word;}
 .instructions.zero{margin:0;}
 .instructions h2{background-color:#D8D8D8;color:#4E9CB5;margin:0;padding:10px;}
 .instructions ol{list-style-position:inside;list-style-type:none;padding:0;margin:0}
@@ -61,8 +61,8 @@ h2.subtitle{
     border-radius: 0 20px 20px;
     font-size: 1.6em;
 }
-.row-fluid p{font-size:16px;padding-left:20px;margin:15px 0 10px;}
-.row-fluid ul{font-size:15px;margin:10px 0 20px;}
+.row-fluid p{/*font-size:16px;*/padding-left:20px;margin:15px 0 10px;}
+.row-fluid ul{/*font-size:15px;*/margin:10px 0 20px;}
 
 /*footer*/
 footer{
@@ -72,6 +72,9 @@ footer{
 	text-align: center;
 	padding: 16px 0;
 	margin-top: 40px;
+	margin-bottom: 50px;
 	font-size: 1.2em;
 }
 footer span{color: #777;}
+
+.row-fluid.col2{display:inline-block;margin:0 -15px;}

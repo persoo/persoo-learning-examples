@@ -88,7 +88,7 @@ function showProductDetail(data) {
 	html += '</div>';
 	html += '<div class="boxDebug">';
 	html += '	 <h2 class="more-info">ITEM as JSON <div class="buttons"><span class="link" onclick="showDebug()">show/hide</span><span class="link" onclick="foldDebug()">fold</span></div></h2>';
-	html += '  <div class="editor debug hide" id="jsoneditor">' + JSON.stringify(item) + '</div>';
+	html += '  <div class="editor debug hide" id="jsoneditor"><pre>' + JSON.stringify(item) + '</pre></div>';
 	html += '</div>';
 	html += '<div id="box-alsoBoughtProducts" class="mini-products"><h2>Also Bought</h2><div id="alsoBoughtProducts"></div><div class="clear"></div></div>';
 	html += '<div id="box-alsoViewedProducts" class="mini-products"><h2>Also Viewed</h2><div id="alsoViewedProducts"></div><div class="clear"></div></div>';
