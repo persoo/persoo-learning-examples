@@ -53,39 +53,43 @@
                 <p>After having products in Persoo, you can start using them in all offer types (recommendation boxes, emails, web widgets, ...).
                 Persoo collects user interactions with products only for product IDs (we call them itemID) and needs to regularly read your
                 product feed to learn about current price, title, link, image link,...</p>
-
-                <div class="instructions">
-                  <h2>Instructions</h2>
-                  <ol>
-                    <li><div>1</div><div><span>Go to Setting - imports and in the list select "products".</span></div></li>
-                    <li><div>2</div><div><span>Add url <code>https://s3-eu-west-1.amazonaws.com/cz.persoo.images/sampleProductFeeds/snapbacksSample.json</code> to import url and select JSON type</span></div></li>
-                    <li><div>3</div><div><span>Click on "Status" section in top bar and then click "run" import in test environment to import the products from the JSON.</span></div></li>
-                    <li><div>4</div><div><span>Click the status line to see details. Find "destinations" url to preview and download results.</span></div></li>
-                    <li><div>5</div><div><span>Note: destinations url contains secret hashes -- set your own in Settings - Credentials - secret hash.</span></div></li>
-                    <li><div>6</div><div><span>Publish changes to production.</span></div></li>
-                    <li><div>7</div><div><span>Run import in production (go to Import status, and click "run" in production environment.</span></div></li>
-                  </ol>
-                </div>
-
-                <div class="row-fluid script" id="targetedActions">
-                    <h2>One imported product is</h2>
-                    <pre id="oneSampleProduct"></pre>
-                    <script>
-                        productsDB.getSampleProduct(function (data) {
-                            var elem = document.getElementById('oneSampleProduct');
-                            if (data) {
-                            	elem.innerHTML = JSON.stringify(data, false, 4);
-                            } else {
-                                elem.innerHTML = 'You do not have any product in your Persoo account yet. Import one using instructions on the left.'
-                            }
-                        });
-                    </script>
+                <div class="row-fluid col2">
+                  <div class="col-md-6">
+                    <div class="instructions">
+                      <h2>Instructions</h2>
+                      <ol>
+                        <li><div>1</div><div><span>Go to Setting - imports and in the list select "products".</span></div></li>
+                        <li><div>2</div><div><span>Add url <code>https://s3-eu-west-1.amazonaws.com/cz.persoo.images/sampleProductFeeds/snapbacksSample.json</code> to import url and select JSON type</span></div></li>
+                        <li><div>3</div><div><span>Click on "Status" section in top bar and then click "run" import in test environment to import the products from the JSON.</span></div></li>
+                        <li><div>4</div><div><span>Click the status line to see details. Find "destinations" url to preview and download results.</span></div></li>
+                        <li><div>5</div><div><span>Note: destinations url contains secret hashes -- set your own in Settings - Credentials - secret hash.</span></div></li>
+                        <li><div>6</div><div><span>Publish changes to production.</span></div></li>
+                        <li><div>7</div><div><span>Run import in production (go to Import status, and click "run" in production environment.</span></div></li>
+                      </ol>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row-fluid script" id="targetedActions">
+                        <h2>One imported product is</h2>
+                        <pre id="oneSampleProduct"></pre>
+                        <script>
+                            productsDB.getSampleProduct(function (data) {
+                                var elem = document.getElementById('oneSampleProduct');
+                                if (data) {
+                                	elem.innerHTML = JSON.stringify(data, false, 4);
+                                } else {
+                                    elem.innerHTML = 'You do not have any product in your Persoo account yet. Import one using instructions on the left.'
+                                }
+                            });
+                        </script>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
     </div>
-    <footer>
-      <span>&copy; Persoo.cz 2016</span>
+    <footer id="footerElement">
+
     </footer>
 </body>
 </html>

@@ -6,7 +6,7 @@
  *
  * @author Michal
  */
-
+/*
 $(function(){
 		function fixNav(){
 				if( $(window).scrollTop() > 50){
@@ -21,4 +21,4 @@ $(function(){
 		$(window).scroll(function(){
         fixNav();
     });
-});
+});*/

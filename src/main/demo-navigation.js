@@ -279,3 +279,12 @@ $( document ).ready(function() {
     mountTopNavigation(headElement);
 });
 mountLocalNavigation(headElement);
+
+/*Footer*/
+$( document ).ready(function footer(){
+	console.log("test");
+	var footerElement = document.getElementById('footerElement');
+	var footerContainer = '<span>&copy; Persoo.cz 2016</span>';
+	footerElement.innerHTML = footerContainer;
+});
+footer();
