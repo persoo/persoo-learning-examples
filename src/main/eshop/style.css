@@ -92,9 +92,25 @@ pre.basket {
 
 /* product mini card */
 .mini-products {
+	display: inline-block;
+	text-align: center;
+  font-size: 30px;
 	clear: both;
-	margin: 10px 0;
-	font-size: x-small;
+  color: white;
+  width:50%;
+  cursor: pointer;
+  text-decoration: none;
+	padding: 0 5px;
+}
+
+.mini-products h2{
+	background-color: #00CDAC;
+  font-size: 0.9em;
+	margin: 0;
+	padding: 5px;
+}
+.mini-products h2:hover{
+	background-color: #88D3AB;;
 }
 .productMiniCard {
     border: 1px solid lightgrey;
