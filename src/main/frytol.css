@@ -66,15 +66,81 @@ h2.subtitle{
 
 /*footer*/
 footer{
-	display: inline-block;
-	width: 100%;
-	background-color: #f8f8f8;
-	text-align: center;
-	padding: 16px 0;
-	margin-top: 40px;
-	margin-bottom: 50px;
-	font-size: 1.2em;
+		display: inline-block;
+		width: 100%;
+		background-color: #f8f8f8;
+		text-align: center;
+		padding: 16px 0;
+		margin-top: 40px;
+		margin-bottom: 50px;
+		font-size: 1.2em;
 }
 footer span{color: #777;}
 
 .row-fluid.col2{display:inline-block;margin:0 -15px;}
+
+#accordion.styleONE{
+		word-break:break-word;
+		border-bottom: 1px solid #e3e3e3;
+}
+#accordion.styleONE h2{
+	background-color:#D8D8D8;
+	color:#4E9CB5;
+	margin:0;
+	padding:10px;
+}
+#accordion.styleONE div.number{
+	font-size:1.6em;
+	position:absolute;
+	width:60px;
+	height:60px;
+	text-align:center;
+	line-height:60px;
+	color:white;
+}
+
+#accordion.styleONE h4 a{
+		width: 100%;
+		display: block;
+		cursor: pointer;
+}
+#accordion.styleONE h4 a::before{
+		position:absolute;
+		content: "\25b2";
+		right: 30px;
+    width: 15px;
+    text-align: right;
+}
+#accordion.styleONE h4 a.collapsed::before{
+		content: "\25bc";
+}
+
+#accordion.styleONE .panel-default{
+		background-color: #4E9CB5;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		margin-bottom: 0;
+		border-left: 1px solid #e3e3e3;
+		border-top: 1px solid #e3e3e3;
+		border-right: 1px solid #e3e3e3;
+		border-bottom: 0;
+}
+#accordion.styleONE .panel-default .panel-heading{
+		height: 60px;
+		margin-left: 60px;
+		background-color: #EDEDED;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+}
+#accordion.styleONE .panel-default .panel-collapse{
+		margin-left: 60px;
+		background-color: #EDEDED;
+}
+#accordion.styleONE .panel-default .panel-collapse span{
+		display: block;
+		font-size: 1.2em;
+		color: #5D656C;
+		padding: 8px;
+}
