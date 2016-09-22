@@ -16,14 +16,14 @@
 #hpMainNavigation p{margin:0 0 10px;}
 #hpMainNavigation p i{background-color:#f5f5f5;padding:3px 5px;border-radius:5px;border:1px solid #e8e8e8;}
 
-/*Navigation on left*/
+/* Navigation on left */
 #localNavigation{padding:0!important;margin-top: 20px;}
 #localNavigation ul{padding-bottom:5px;margin:0;}
 #localNavigation ul li.nav-header{text-align:center;font-size:16px;background-color:#ddd;padding:3px 0;margin-bottom:5px;}
 #localNavigation ul li a{color:#828282;padding:5px 15px;}
 #localNavigation ul li.active a{color:#444;}
 
-/*top navigation*/
+/* top navigation */
 .navbar-nav button{color:white;}
 .navbar-nav button:nth-of-type(1){background-color:#BD1E51;}
 .navbar-nav button:nth-of-type(2){background-color:#F8CA10;}
@@ -32,7 +32,7 @@
 #persooDemoNavigation .navbar .navbar-collapse .navbar-nav{float:right;margin-right:-15px;}
 #persooDemoNavigation .navbar .navbar-collapse .navbar-nav .navbar-form{padding:0;}
 #persooDemoNavigation .navbar-header{padding:5px 0;}
-#persooDemoNavigation .navbar-brand{padding:0px 15px;height:40px;line-height:40px;}
+#persooDemoNavigation .navbar-brand{padding:0px 15px 0 3px;margin: 6px 0 0 0;height:40px;line-height:40px;}
 
 #persooDemoNavigation2{position:fixed;width:100%;z-index:1000;bottom:0;}
 #persooDemoNavigation2 .navbar{border:1px solid #e7e7e7;margin:0;}
@@ -42,3 +42,72 @@
 #persooDemoNavigation2 .navbar-collapse ul.navbar-nav li:nth-of-type(1){position:absolute;left:0;display:inline-block;}
 #persooDemoNavigation2 .navbar-collapse ul.navbar-nav li:nth-of-type(2){position:absolute;width:120px;margin-left:-60px;display:inline-block;}
 #persooDemoNavigation2 .navbar-collapse ul.navbar-nav li:nth-of-type(3){position:absolute;right:0;display:inline-block;}
+
+footer{
+		display: inline-block;
+		width: 100%;
+		background-color: #f8f8f8;
+		text-align: center;
+		padding: 16px 0;
+		margin-top: 40px;
+		margin-bottom: 50px;
+		font-size: 1.2em;
+}
+footer span{color: #777;}
+
+/* preview box */
+.preview { width:100%;padding-left:0;margin:20px 0 40px;}
+.preview.zero { margin:0;}
+.preview h2 { background-color:#D8D8D8;color: #BD1E51;margin:0;padding:10px;}
+.preview pre { border-radius:0; margin:0; border:1px solid #e3e3e3; background-color: #EDEDED;}
+
+/* instructions box */
+.instructions {
+    margin:20px 0 40px;
+    word-break:break-word;
+}
+.instructions > h2{
+    background-color:#D8D8D8;
+    color:#4E9CB5;
+    margin:0;padding:10px;
+}
+.instructions ol {
+	counter-reset:li;
+	margin-left:0;
+	padding-left:0;
+}
+.instructions ol > li {
+	position:relative;
+	margin:0 0 6px 2em;
+	padding:4px 8px;
+	list-style:none;
+	/* border-top:2px solid #666; */
+	background:#f6f6f6;
+}
+.instructions ol > li:before {
+	content:counter(li);
+	counter-increment:li;
+	/* Position and style the number */
+	position:absolute;
+	top:-2px;
+	left:-2em;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	width:2em;
+	/* Some space between the number and the content in browsers that support
+	   generated content but not positioning it (Camino 2 is one example) */
+	margin-right:8px;
+	padding:4px;
+	/* border-top:2px solid #666; */
+	color:#fff;
+	background:#4E9CB5;
+	font-weight:bold;
+	font-family:"Helvetica Neue", Arial, sans-serif;
+	text-align:center;
+}
+.instructions li ol,
+.instructions li ul {margin-top:6px;}
+.instructions ol ol li:last-child {margin-bottom:0;}
+
+.instructions .codeToCopyAndPaste {min-height: 300px; height: auto; width: 100%;}

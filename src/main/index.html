@@ -64,6 +64,7 @@
                     mountPersooHPNavigation(persooDemo.navigationConfig, 'hpMainNavigation');
                 </script>
 
+                <p>Download this demo <a href="../persoo-playground.tgz">persoo-playground.tgz</a> as static files (directory with HTML, CSS, JS for local experiments).</p>
 
                 <h2>How it works?</h2>
                 <p>You can download this demo as HTML files and open them locally in your browser
@@ -111,8 +112,7 @@
                            <li>parsed query string from url</li>
                            <li>template rendering (see <a href="http://ejs.co/">ejs</a> or <a href="http://support.persoo.cz/technicky-manual/sablonovaci-jazyk/">persoo templates</a>)</li>
                         </ul>
-                        <div class="row-fluid script" id="targetedActions">
-                            <h2>Script</h2>
+                        <div class="row-fluid">
                             <pre>
 // Template rendering
 var html = ejs.render('1 + 2 = <%= 1+2%> and <%= x %>', {x: 'valueX'});

@@ -14,7 +14,7 @@ module.exports = function (grunt) {
 	                  'src/main/demo-navigation.css',
 										'src/main/frytol.css'
 	            ],
-	            dest: 'common/persoo-demo-all.css'
+	            dest: 'target/common/persoo-demo-all.css'
 	        },
 	        demoAllJS: {
 	            src: [
@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 	                  'src/lib/persooUtils.js',
 	                  'src/lib/productsDB.js'
 	            ],
-	            dest: 'common/persoo-demo-all.js'
+	            dest: 'target/common/persoo-demo-all.js'
 	        }
 	    },
 		jshint: {
@@ -60,53 +60,61 @@ module.exports = function (grunt) {
 		        files: [
 		                {expand: true, cwd:'src/main',
 		                    src: [],
-		                    dest: 'common/'},
+		                    dest: 'target/common/'},
 	                    {expand: true, cwd:'src/lib',
 	                        src: ['jquery/**', 'bootstrap/**'],
-	                        dest: 'common/'},
+	                        dest: 'target/common/'},
 	                    {expand: true, cwd:'src/',
 		                    src: ['img/**'],
-		                    dest: 'common/'}
+		                    dest: 'target/common/'}
 	                   ]
 		    },
 			srcToFontsDir:{
 		        files: [
 	                    {expand: true, cwd:'src/lib/bootstrap',
 	                        src: ['fonts/**'],
-	                        dest: '.'},
+	                        dest: 'target/'},
 	                   ]
 		    },
 		    srcToSolutionsDir:{
 		        files: [
 		                {expand: true, cwd:'src/main',
 		                    src: ['*/*'],
-		                    dest: 'solutions/'},
+		                    dest: 'target/solutions/'},
 		                {expand: true, cwd:'src/main',
 		                    src: ['index.html'],
-		                    dest: 'solutions/'},
+		                    dest: 'target/solutions/'},
 				        {expand: true, cwd:'src/',
 				            src: ['globalConfig.js'],
-				            dest: 'solutions/'}
+				            dest: 'target/solutions/'}
 	                   ]
 		    },
 		    srcToExcercisesDir:{
 		        files: [
 		                {expand: true, cwd:'src/main',
 		                    src: ['*/*'],
-		                    dest: 'excercises/'},
+		                    dest: 'target/excercises/'},
 		                {expand: true, cwd:'src/main',
 		                    src: ['index.html'],
-		                    dest: 'excercises/'},
+		                    dest: 'target/excercises/'},
 			            {expand: true, cwd:'src/',
 			                src: ['globalConfig.js'],
-			                dest: 'excercises/'}
+			                dest: 'target/excercises/'}
 	                   ]
 		    }
 		},
+        exec: { 
+            packDemosToGZ: {
+                cmd: 'tar -czf persoo-playground.tgz target'
+            },
+	        moveGZToTarget: {
+	            cmd: 'mv persoo-playground.tgz target/'
+	        }
+        },
 		mysed: {
 		    removeSolutionForExcercises: {
-		    	files: "excercises/**",
-		    	path: 'excercises',
+		    	files: "target/excercises/**",
+		    	path: 'target/excercises',
 		        pattern: 'persooSolutionStart.*persooSolutionEnd',
 		        replacement: 'place for your code',
 		        multiline: true,
@@ -115,8 +123,8 @@ module.exports = function (grunt) {
 		},
 		sed: {
 		    removeSolutionForExcercises: {
-		    	files: "excercises/**",
-		    	path: 'excercises',
+		    	files: "target/excercises/**",
+		    	path: 'target/excercises',
 		        pattern: 'persooSolutionStartM.*persooSolutionEndM',
 		        replacement: 'place for your code',
 		        multiline: true,
@@ -176,7 +184,8 @@ module.exports = function (grunt) {
                                    'copy:srcToFontsDir',
                                    'copy:srcToSolutionsDir',
                                    'copy:srcToExcercisesDir',
-                                   'mysed', 'sed'
+                                   'mysed', 'sed',
+                                   'exec:packDemosToGZ', 'exec:moveGZToTarget'
                                   ]);
 
     grunt.registerTask('test', ['build', 'jshint', /* 'qunit' */]);

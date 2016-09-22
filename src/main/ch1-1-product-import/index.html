@@ -58,67 +58,25 @@
                     <div class="instructions">
                       <h2>Instructions</h2>
                       <ol>
-                        <li><div>1</div><div><span>Go to Setting - imports and in the list select "products".</span></div></li>
-                        <li><div>2</div><div><span>Add url <code>https://s3-eu-west-1.amazonaws.com/cz.persoo.images/sampleProductFeeds/snapbacksSample.json</code> to import url and select JSON type</span></div></li>
-                        <li><div>3</div><div><span>Click on "Status" section in top bar and then click "run" import in test environment to import the products from the JSON.</span></div></li>
-                        <li><div>4</div><div><span>Click the status line to see details. Find "destinations" url to preview and download results.</span></div></li>
-                        <li><div>5</div><div><span>Note: destinations url contains secret hashes -- set your own in Settings - Credentials - secret hash.</span></div></li>
-                        <li><div>6</div><div><span>Publish changes to production.</span></div></li>
-                        <li><div>7</div><div><span>Run import in production (go to Import status, and click "run" in production environment.</span></div></li>
+                        <li>Go to Setting - imports and in the list select "products".</li>
+                        <li>Add url <code>https://s3-eu-west-1.amazonaws.com/cz.persoo.images/sampleProductFeeds/snapbacksSample.json</code> to import url and select JSON type.</li>
+                        <li>Click on "Status" section in top bar and then click "run" import in test environment to import the products from the JSON.</li>
+                        <li>Click the status line to see details. Find "destinations" url to preview and download results.</li>
+                        <li>Note: destinations url contains secret hashes -- set your own in Settings - Credentials - secret hash.</li>
+                        <li>Publish changes to production.</li>
+                        <li>Run import in production (go to Import status, and click "run" in production environment.</li>
                       </ol>
                     </div>
-                    <div id="accordion" class="styleONE" role="tablist" aria-multiselectable="true">
-                    <h2>Instructions</h2>
-  <div class="panel panel-default">
-    <div class="number">1</div>
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Go to Setting
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <span>Go to Setting - imports and in the list select "products".</span>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="number">2</div>
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Add url
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <span>Add url <code>https://s3-eu-west-1.amazonaws.com/cz.persoo.images/sampleProductFeeds/snapbacksSample.json</code> to import url and select JSON type</span>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="number">3</div>
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Click on "Status"
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <span>Click on "Status" section in top bar and then click "run" import in test environment to import the products from the JSON.</span>
-    </div>
-  </div>
-</div>
                   </div>
                   <div class="col-md-6">
-                    <div class="row-fluid script" id="targetedActions">
-                        <h2>One imported product is</h2>
+                    <div class="row-fluid preview">
+                        <h2>Preview</h2>
                         <pre id="oneSampleProduct"></pre>
                         <script>
                             productsDB.getSampleProduct(function (data) {
                                 var elem = document.getElementById('oneSampleProduct');
                                 if (data) {
-                                	elem.innerHTML = JSON.stringify(data, false, 4);
+                                	elem.innerHTML = "One imported product is " + JSON.stringify(data, false, 4);
                                 } else {
                                     elem.innerHTML = 'You do not have any product in your Persoo account yet. Import one using instructions on the left.'
                                 }
