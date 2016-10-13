@@ -61,48 +61,174 @@
                 <!--Body content-->
                 <h1>Auto-complete</h1>
 
-
-                <p>This demonstrates the auto-complete feature in Persoo. Create algorithm 
+                <p>This demonstrates the auto-complete/suggest feature in Persoo. Try the difference between simple and personalized auto-complete. 
+                </p>
+                <p>
+                Features:
+                <ul>
+                   <li><b>lightning fast suggest</b>. Speed matters.
+                   <li><b>query corrections</b>, i.e. try "xiltovka" and "ksiltovka", or similarly works "televize" x "televizor".
+                   <li><b>ranking of found results</b>, i.e. buy, view metrics
+                   <li><b>personalizations</b>, i.e. for query "shoes" show different shoes to women and man, or prefer products of visitor's favourite brand/manufacturer.
+                </ul>
                 </p>
 
-                <h3>Pure suggest search signal</h3>
-                <input id="demoAutocomplete1" autofocus="" type="text" name="q" placeholder="Search for product ..." style="width:100%;max-width:600px;outline:0;margin-top:2px;" autocomplete="off">
+                <h3>Pure lightning fast suggest</h3>
+                <input id="demoAutocomplete1" 
+                       autofocus=""
+                       type="text"
+                       name="q1"
+                       placeholder="Search for product ..." 
+                       style="width:100%;max-width:600px;outline:0;margin-top:4px;border-width:2px;" 
+                       autocomplete="off">
 
-                <h3>Only search signal</h3>
-                <input id="demoAutocomplete2" autofocus="" type="text" name="q" placeholder="Search for product ..." style="width:100%;max-width:600px;outline:0;margin-top:2px;" autocomplete="off">
-
-                <h3>Persoalized by favourite color</h3>
-                <p>Select color preferences below</p>
-                <input id="demoAutocomplete3" autofocus="" type="text" name="q" placeholder="Search for product ..." style="width:100%;max-width:600px;outline:0;margin-top:2px;" autocomplete="off">
-
-                
+                <h3>Personalized suggest</h3>
+                <input id="demoAutocomplete2" 
+                       autofocus=""
+                       type="text"
+                       name="q2"
+                       placeholder="Search for product ..." 
+                       style="width:100%;max-width:600px;outline:0;margin-top:4px;border-width:2px;" 
+                       autocomplete="off">
 
                 <!-- Using https://goodies.pixabay.com/javascript/auto-complete/demo.html -->
                 <!-- https://goodies.pixabay.com/javascript/auto-complete/auto-complete.js -->
                 <script src="auto-complete.js"></script>
                 <script>
                     function createAutoComplete(selector, algorithmID) {
-	                     return new autoComplete({
-	                        selector: selector,
-	                        minChars: 1,
-	                        source: function(term, response){
-	                            persoo('send', 'suggest', {_w:'getAlgorithm', algorithmID: algorithmID, query: term},  function(data){ response(data.items); });
-	                        },
-	                        renderItem: function (item, search){
-	                            search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-	                            var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
-	                            return '<div class="autocomplete-suggestion" data-val="'+search+'"><img src="' + item.imageLink + '"> '+ item.title.replace(re, "<b>$1</b>") + '</div>';
-	                        },
-	                        onSelect: function(e, term, item){
-	                            alert('Item "'+item.getAttribute('data-langname')+' ('+item.getAttribute('data-lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter' : 'mouse click')+'.');
-	                        }
-	                    });
+                         return new autoComplete({
+                            selector: selector,
+                            minChars: 1,
+                            source: function(term, response){
+                                persoo('send', 'suggest', {_w:'getAlgorithm', algorithmID: algorithmID, query: term},  function(data){ response(data.items); });
+                            },
+                            renderItem: function (item, search){
+                                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                                return '<div class="autocomplete-suggestion" data-val="'+search+'"><img src="' + item.imageLink + '"> '+ item.title.replace(re, "<b>$1</b>") + '</div>';
+                            },
+                            onSelect: function(e, term, item){
+                                alert('Item "' + item.title +'" selected by '+(e.type == 'keydown' ? 'pressing enter' : 'mouse click')+'.');
+                            }
+                        });
                     }
                     
                     var myAutocomplete1 = createAutoComplete('input#demoAutocomplete1', 'd197a29af2394df2a36ccdd28a97196b');
                     var myAutocomplete2 = createAutoComplete('input#demoAutocomplete2', 'ac92c77e1c314a87810030a552d7a770');
-                    var myAutocomplete3 = createAutoComplete('input#demoAutocomplete3', 'a53a90fb8ff24fb3bc7a19cce4281747');
                 </script>
+
+                <div class="row-fluid col2">
+                  <div class="col-md-6">
+                    <div class="instructions">
+                      <h2>Instructions</h2>
+                      <ol>
+                        <li>With no visitor preferences, both are the suggests are the same.</li>
+                        <li>Create your preferences by clicking buttons on the left, i.e.
+                            click <b>"modrá"</b> color (modrá means blue) and brand <b>"supra"</b> to get it as your preference. <br/>
+                            
+                            Preference are stored in your visitor profile. Visitor interacts with products, 
+                            which have such as properties like color, brand, price level, gender,... and 
+                            Persoo maintains the preferences in real-time.
+                            </li>
+                        <li>Try both suggest in both input boxes by typing "ksiltovka" (means cap) and see the diffrence</li>
+                        <li>Try to type "xiltovka" to see what we find and how we correct queries</li>
+                        <li>For changing suggest settings:
+                            <ol>
+                                <li>In persoo administration go to Recommendations - Algorithms</li>
+                                <li>Select "example: autocomplete" algorithm or create new "ProductSearch" algorithm with suggest signal.</li>
+                                <li>In the algorithm setup personalization and ranking options, set their weights.</li>
+                                <li>Update autocomplete component in this page to bind to your algorithm.</li>
+                            </ol>
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row-fluid preview">
+                        <h2>Your visitor profile</h2>
+                        
+                        
+                        Your visitor profile contains following preferences. Click the buttons below to simulate your interaction with given property. 
+                        Vistors of you website will automatically update their preferences by viewing and purchasing products, using filters, ...
+                        
+                        <h3>Colors</h3>
+                        <pre id="preferredColors"></pre>
+                        <div id="interactionsColors"></div>
+
+                        <h3>Brands</h3>
+                        <pre id="preferredBrands"></pre>
+                        <div id="interactionsBrands"></div>
+                    
+                        <h3>&nbsp;</h3>
+                        <i>Note:</i> Autocompete component in this page caches the results. 
+                        Thus if you update preferences and search for the same query, you should press F5 (reload the page) 
+                        to see fresh personalized results.
+                        <script>
+                            function updateMyPreferences() {
+                                persoo('getUserSpace', function () {
+                                    var profile = persoo.userSpace;
+                                    
+                                    var elem = document.getElementById('preferredColors');
+                                    
+                                    if (profile.db.preferences.short.colors) {
+                                        elem.innerHTML = "Your preferred colors are " + JSON.stringify(profile.db.preferences.short.colors, false, 4);
+                                    } else {
+                                        elem.innerHTML = 'You do not have any preference for color yet. Click some colors below.'
+                                    }
+                                    
+                                    var elem = document.getElementById('preferredBrands');
+                                    if (profile.db.preferences.short.brand) {
+                                        elem.innerHTML = "Your preferred brands are " + JSON.stringify(profile.db.preferences.short.brand, false, 4);
+                                    } else {
+                                        elem.innerHTML = 'You do not have any preference for brand yet. Click some brand below.'
+                                    }
+                                });
+                            }
+                            function reportInteractionToPersoo(data) {
+                                persoo('send', 'userInteraction', data, function(){
+                                    updateMyPreferences();
+                                });    
+                            }
+                            function renderInteractionButtons(selectorID, fieldName, mapWithFields) {
+                                elem = document.getElementById(selectorID);
+                                html = '';
+                                for (var item in mapWithFields) {
+                                    html += '<button class="interaction" onClick="javascript:reportInteractionToPersoo({' + fieldName + ': \'' + item + '\'});">' + item + '</button>';
+                                }
+                                elem.innerHTML = '<div>' + html + '</div>';
+                            }
+                            updateMyPreferences();
+ 
+                            persoo('send', 'aggregations', {_w:'getAlgorithm', algorithmID: 'algorithmID'},  function(data){ 
+                                var agregations = data.aggretations; // FIXME load aggregations from server 
+                                agregations = {
+                                    brand: {
+                                        "Cayler & Sons": 100,
+                                        "Starter": 20,
+                                        "Supra": 20,
+                                        "Mitchell & Ness": 100,
+                                        "LRG": 22,
+                                        "Mishka": 2
+                                    },
+                                    colors: {
+                                        "bílá": 12,
+                                        "červená": 12,
+                                        "modrá": 12,
+                                        "zelená": 12,
+                                        "černá": 12,
+                                        "šedá": 12,
+                                        "žlutá": 12
+                                    }
+                                }
+                                
+                                renderInteractionButtons('interactionsColors', 'colors', agregations.colors);
+                                renderInteractionButtons('interactionsBrands', 'brand', agregations.brand);
+                            });
+                        </script>
+                    </div>
+                  </div>
+                </div>
+
             </div>                
         </div>
     </div>

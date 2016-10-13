@@ -33,6 +33,9 @@ function getScriptHomePath( scriptFilename ) {
 }
 var URL_ROOT = getScriptHomePath('globalConfig.js');
 if( URL_ROOT == './') {URL_ROOT = getScriptHomePath('persoo-demo-all.js');}
+var SECTION = document.location.pathname.match('/solutions/') ? 'solutions/' :
+	document.location.pathname.match('/excercises/') ? 'excercises/' : 'common/';
+URL_ROOT = URL_ROOT.replace('/common/','/').replace('/solutions/','/').replace('/excercises/','/');
 
 function convertNavigationStructureToList(navConfig, list, prefix) {
 	for(var i = 0; i < navConfig.length; i++){
@@ -62,12 +65,12 @@ function getTopLinks() {
 			if (list[j].url == currentDemoURL) {
 				if (j > 0) {
 					var item = list[j - 1];
-					topLinks.prevURL = URL_ROOT + item.url;
+					topLinks.prevURL = URL_ROOT + SECTION + item.url;
 					topLinks.prevTitle = item.numbering + ' ' + item.title;
 				}
 				if (j < list.length-1) {
 					var item = list[j + 1];
-					topLinks.nextURL = URL_ROOT + item.url;
+					topLinks.nextURL = URL_ROOT + SECTION + item.url;
 					topLinks.nextTitle = item.numbering + ' ' + item.title;
 				}
 				break;
@@ -94,8 +97,8 @@ function showPersooDemoNavigation(){
 				        '<span class="icon-bar"></span>' +
 				        '<span class="icon-bar"></span>' +
 				      '</button>' +
-				      '<a href="' + URL_ROOT + '"><img src="' + URL_ROOT + '/../../common/img/persoo_logo_60h.png" height="40px" style="float:left;margin:0px 15px 0 0;"></a>' +
-				      '<a class="navbar-brand" href="' + URL_ROOT + '">Playground</a>' +
+				      '<a href="' + URL_ROOT + SECTION + '"><img src="' + URL_ROOT + '/../common/img/persoo_logo_60h.png" height="40px" style="float:left;margin:0px 15px 0 0;"></a>' +
+				      '<a class="navbar-brand" href="' + URL_ROOT + SECTION + '">Playground</a>' +
 				    '</div>' +
 				    '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
 					    '<ul class="nav navbar-nav">' +
@@ -113,7 +116,7 @@ function showPersooDemoNavigation(){
 }
 
 /**
- * Top navigation panel. 2
+ * Bottom navigation
  */
 function showPersooDemoNavigation2(){
 	var navigationDiv = document.createElement('div');
@@ -129,7 +132,7 @@ function showPersooDemoNavigation2(){
 					             '<a href="' + topLinks.prevURL + '" title="Previous demo">' +
 					             '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>' + topLinks.prevTitle + '</a>' : '') +
 							  '</li>' +
-					         '<li><a href="' + URL_ROOT + '" title="List of available demos">' +
+					         '<li><a href="' + URL_ROOT + SECTION + '" title="List of available demos">' +
 					             '<span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;demo list</a>' +
 							  '<li>' +
 					         (topLinks.nextURL ?
@@ -157,10 +160,10 @@ function mountPersooHPNavigation(navigationConfig, rootElement) {
 			html += '<li>';
 			var navItem = navConfig[i];
 			if (navItem.type == 'demo') {
-				html += '<a href="' + URL_ROOT + navItem.url + '">' + navItem.title + '</a><br />';
+				html += '<a href="' + URL_ROOT + SECTION + navItem.url + '">' + navItem.title + '</a><br />';
 				html += '<p><i>' + navItem.description + '</i></p>';
 			} else if (navItem.type == 'group') {
-				html += navItem.title;
+				html += '<a href="#">' + navItem.title + '</a><br />';
 				html += '<p><i>' + navItem.description + '</i></p>';
 				html += generInnerNavigation(navItem.children, '', level + 1);
 			}

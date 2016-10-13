@@ -25,6 +25,12 @@ persooDemo.navigationConfig = [
     	title: 'Eshop - product recommendations',
     	description: 'Setting dataLayer in simple eshop. Displaying simple boxes with product recommendations',
     	url: 'eshop'
+    },    
+    {
+    	type: 'demo',
+    	title: 'Auto-complete/suggest in site search',
+    	description: 'More and more users are using site search to find what they need. Speed matters. Personalizations drives higher conversion.',
+    	url: 'autocomplete'
     }    
 ];
 persooDemo.navigation = {
