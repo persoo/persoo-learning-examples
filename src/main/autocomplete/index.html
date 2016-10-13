@@ -100,7 +100,7 @@
                             selector: selector,
                             minChars: 1,
                             source: function(term, response){
-                                persoo('send', 'suggest', {_w:'getAlgorithm', algorithmID: algorithmID, query: term},  function(data){ response(data.items); });
+                                persoo('send', 'suggest', {_w:'getAlgorithm', algorithmID: algorithmID, query: term},  function(data){ response(data.items || []); });
                             },
                             renderItem: function (item, search){
                                 search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
