@@ -10,7 +10,7 @@
 // Returns true, if filename matches URL.
 // Used for finding active links in navigation.
 function matchFilenameInUrl(url, filename){
-	return (new RegExp('/' + filename + '([#?][^#?]*)?$')).test(url);
+    return (new RegExp('/' + filename + '([#?][^#?]*)?$')).test(url);
 }
 
 /**
@@ -19,132 +19,132 @@ function matchFilenameInUrl(url, filename){
  * @returns {String} URL to folder containing scriptFilename
  */
 function getScriptHomePath( scriptFilename ) {
-	var urlPath = './';
-	var scripts = document.getElementsByTagName("SCRIPT");
-	var len = scripts.length;
-	for ( var i = 0; i < len; i++) {
-		if (scripts[i].src.indexOf('/' + scriptFilename) > -1) {
-			urlPath = scripts[i].src.replace(
-					scriptFilename, '');
-			break;
-		}
-	}
-	return urlPath;
+    var urlPath = './';
+    var scripts = document.getElementsByTagName("SCRIPT");
+    var len = scripts.length;
+    for ( var i = 0; i < len; i++) {
+        if (scripts[i].src.indexOf('/' + scriptFilename) > -1) {
+            urlPath = scripts[i].src.replace(
+                    scriptFilename, '');
+            break;
+        }
+    }
+    return urlPath;
 }
 var URL_ROOT = getScriptHomePath('globalConfig.js');
 if( URL_ROOT == './') {URL_ROOT = getScriptHomePath('persoo-demo-all.js');}
 var SECTION = document.location.pathname.match('/solutions/') ? 'solutions/' :
-	document.location.pathname.match('/excercises/') ? 'excercises/' : 'common/';
+    document.location.pathname.match('/excercises/') ? 'excercises/' : 'common/';
 URL_ROOT = URL_ROOT.replace('/common/','/').replace('/solutions/','/').replace('/excercises/','/');
 
 function convertNavigationStructureToList(navConfig, list, prefix) {
-	for(var i = 0; i < navConfig.length; i++){
-		var navItem = navConfig[i];
-		var newPrefix = (prefix ? prefix + '.' : '') + (i+1);
-		if (navItem.type == 'demo') {
-			navItem.numbering = newPrefix
-			list.push(navItem);
+    for(var i = 0; i < navConfig.length; i++){
+        var navItem = navConfig[i];
+        var newPrefix = (prefix ? prefix + '.' : '') + (i+1);
+        if (navItem.type == 'demo') {
+            navItem.numbering = newPrefix
+            list.push(navItem);
 
-		} else if (navItem.type == 'group') {
-			list = list.concat(convertNavigationStructureToList(navItem.children, [], newPrefix));
-		}
-	}
-	return list;
+        } else if (navItem.type == 'group') {
+            list = list.concat(convertNavigationStructureToList(navItem.children, [], newPrefix));
+        }
+    }
+    return list;
 }
 
 function getTopLinks() {
-	var topLinks = {};
+    var topLinks = {};
 
-	var currentPath = document.location.pathname;
-	var rootPath = URL_ROOT.replace(/.*:\/\/[^/]+\//,'/');
+    var currentPath = document.location.pathname;
+    var rootPath = URL_ROOT.replace(/.*:\/\/[^/]+\//,'/');
 
-	var currentDemoURL = currentPath.replace(rootPath, '').replace(/\/.*/, '');
-	if (currentDemoURL) {
-		var list = convertNavigationStructureToList(persooDemo.navigationConfig, []);
-		for (var j = 0; j < list.length; j++) {
-			if (list[j].url == currentDemoURL) {
-				if (j > 0) {
-					var item = list[j - 1];
-					topLinks.prevURL = URL_ROOT + SECTION + item.url;
-					topLinks.prevTitle = item.numbering + ' ' + item.title;
-				}
-				if (j < list.length-1) {
-					var item = list[j + 1];
-					topLinks.nextURL = URL_ROOT + SECTION + item.url;
-					topLinks.nextTitle = item.numbering + ' ' + item.title;
-				}
-				break;
-			}
-		}
-	}
-	return topLinks;
+    var currentDemoURL = currentPath.replace(rootPath, '').replace(/\/.*/, '');
+    if (currentDemoURL) {
+        var list = convertNavigationStructureToList(persooDemo.navigationConfig, []);
+        for (var j = 0; j < list.length; j++) {
+            if (list[j].url == currentDemoURL) {
+                if (j > 0) {
+                    var item = list[j - 1];
+                    topLinks.prevURL = URL_ROOT + SECTION + item.url;
+                    topLinks.prevTitle = item.numbering + ' ' + item.title;
+                }
+                if (j < list.length-1) {
+                    var item = list[j + 1];
+                    topLinks.nextURL = URL_ROOT + SECTION + item.url;
+                    topLinks.nextTitle = item.numbering + ' ' + item.title;
+                }
+                break;
+            }
+        }
+    }
+    return topLinks;
 }
 
 /**
  * Top navigation panel.
  */
 function showPersooDemoNavigation(){
-	var navigationDiv = document.createElement('div');
-	navigationDiv.id = "persooDemoNavigation";
-	var topLinks = getTopLinks();
-	var navHTML = '' +
-			'<div class="navbar navbar-default">' +
-			    '<div class="container-fluid">' +
-			        '<div class="navbar-header">' +
-				      '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">' +
-				        '<span class="sr-only">Toggle navigation</span>' +
-				        '<span class="icon-bar"></span>' +
-				        '<span class="icon-bar"></span>' +
-				        '<span class="icon-bar"></span>' +
-				      '</button>' +
-				      '<a href="' + URL_ROOT + SECTION + '"><img src="' + URL_ROOT + '/../common/img/persoo_logo_60h.png" height="40px" style="float:left;margin:0px 15px 0 0;"></a>' +
-				      '<a class="navbar-brand" href="' + URL_ROOT + SECTION + '">Playground</a>' +
-				    '</div>' +
-				    '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
-					    '<ul class="nav navbar-nav">' +
-						     '<li>' +
-								'<div class="btn-group navbar-form" role="group" aria-label="...">' +
-								    '<button type="button" class="btn btn-default" onclick="' + "javascript:persoo('showAdminBar');" + '">Show admin bar</button>' +
-								    '<button type="button" class="btn btn-default" onclick="' + "javascript:persoo('setEnvironment', 'test');" + '">Test environment</button>' +
-								    '</div></li>' +
-     	        '</ul>' +
-				    '</div>' + 	// navbar-collapse
-				'</div>' + 	// fluid-container
-			'</div>';		// div.navbar
-	navigationDiv.innerHTML = navHTML;
-	document.body.insertBefore(navigationDiv, document.body.firstChild);
+    var navigationDiv = document.createElement('div');
+    navigationDiv.id = "persooDemoNavigation";
+    var topLinks = getTopLinks();
+    var navHTML = '' +
+            '<div class="navbar navbar-default">' +
+                '<div class="container-fluid">' +
+                    '<div class="navbar-header">' +
+                      '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">' +
+                        '<span class="sr-only">Toggle navigation</span>' +
+                        '<span class="icon-bar"></span>' +
+                        '<span class="icon-bar"></span>' +
+                        '<span class="icon-bar"></span>' +
+                      '</button>' +
+                      '<a href="' + URL_ROOT + SECTION + '"><img src="' + URL_ROOT + '/../common/img/persoo_logo_60h.png" height="40px" style="float:left;margin:0px 15px 0 0;"></a>' +
+                      '<a class="navbar-brand" href="' + URL_ROOT + SECTION + '">Playground</a>' +
+                    '</div>' +
+                    '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
+                        '<ul class="nav navbar-nav">' +
+                             '<li>' +
+                                '<div class="btn-group navbar-form" role="group" aria-label="...">' +
+                                    '<button type="button" class="btn btn-default" onclick="' + "javascript:persoo('showAdminBar');" + '">Show admin bar</button>' +
+                                    '<button type="button" class="btn btn-default" onclick="' + "javascript:persoo('setEnvironment', 'test');" + '">Test environment</button>' +
+                                    '</div></li>' +
+                 '</ul>' +
+                    '</div>' + 	// navbar-collapse
+                '</div>' + 	// fluid-container
+            '</div>';		// div.navbar
+    navigationDiv.innerHTML = navHTML;
+    document.body.insertBefore(navigationDiv, document.body.firstChild);
 }
 
 /**
  * Bottom navigation
  */
 function showPersooDemoNavigation2(){
-	var navigationDiv = document.createElement('div');
-	navigationDiv.id = "persooDemoNavigation2";
-	var topLinks = getTopLinks();
-	var navHTML = '' +
-			'<div class="navbar navbar-default">' +
-			    '<div class="container-fluid">' +
-				    '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
-					    '<ul class="nav navbar-nav">' +
-								'<li>' +
+    var navigationDiv = document.createElement('div');
+    navigationDiv.id = "persooDemoNavigation2";
+    var topLinks = getTopLinks();
+    var navHTML = '' +
+            '<div class="navbar navbar-default">' +
+                '<div class="container-fluid">' +
+                    '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
+                        '<ul class="nav navbar-nav">' +
+                                '<li>' +
                    (topLinks.prevURL ?
-					             '<a href="' + topLinks.prevURL + '" title="Previous demo">' +
-					             '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>' + topLinks.prevTitle + '</a>' : '') +
-							  '</li>' +
-					         '<li><a href="' + URL_ROOT + SECTION + '" title="List of available demos">' +
-					             '<span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;demo list</a>' +
-							  '<li>' +
-					         (topLinks.nextURL ?
-					             '<a href="' + topLinks.nextURL + '" title="Next demo">' +
-					             '' + topLinks.nextTitle + '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>' : '') +
-							  '</li>' +
-     	        '</ul>' +
-				    '</div>' + 	// navbar-collapse
-				'</div>' + 	// fluid-container
-			'</div>';		// div.navbar
-	navigationDiv.innerHTML = navHTML;
-	document.body.insertBefore(navigationDiv, document.body.firstChild);
+                                 '<a href="' + topLinks.prevURL + '" title="Previous demo">' +
+                                 '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>' + topLinks.prevTitle + '</a>' : '') +
+                              '</li>' +
+                             '<li><a href="' + URL_ROOT + SECTION + '" title="List of available demos">' +
+                                 '<span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;demo list</a>' +
+                              '<li>' +
+                             (topLinks.nextURL ?
+                                 '<a href="' + topLinks.nextURL + '" title="Next demo">' +
+                                 '' + topLinks.nextTitle + '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>' : '') +
+                              '</li>' +
+                 '</ul>' +
+                    '</div>' + 	// navbar-collapse
+                '</div>' + 	// fluid-container
+            '</div>';		// div.navbar
+    navigationDiv.innerHTML = navHTML;
+    document.body.insertBefore(navigationDiv, document.body.firstChild);
 }
 
 /**
@@ -154,69 +154,69 @@ function showPersooDemoNavigation2(){
  * @returns
  */
 function mountPersooHPNavigation(navigationConfig, rootElement) {
-	function generInnerNavigation(navConfig, html, level) {
-		html += '<div class="navContainer level' + level + '"><ol>';
-		for(var i = 0; i < navConfig.length; i++){
-			html += '<li>';
-			var navItem = navConfig[i];
-			if (navItem.type == 'demo') {
-				html += '<a href="' + URL_ROOT + SECTION + navItem.url + '">' + navItem.title + '</a><br />';
-				html += '<p><i>' + navItem.description + '</i></p>';
-			} else if (navItem.type == 'group') {
-				html += '<a href="#">' + navItem.title + '</a><br />';
-				html += '<p><i>' + navItem.description + '</i></p>';
-				html += generInnerNavigation(navItem.children, '', level + 1);
-			}
-			html += '</li>';
-		}
-		html += '</ol></div>';
+    function generInnerNavigation(navConfig, html, level) {
+        html += '<div class="navContainer level' + level + '"><ol>';
+        for(var i = 0; i < navConfig.length; i++){
+            html += '<li>';
+            var navItem = navConfig[i];
+            if (navItem.type == 'demo') {
+                html += '<a href="' + URL_ROOT + SECTION + navItem.url + '">' + navItem.title + '</a><br />';
+                html += '<p><i>' + navItem.description + '</i></p>';
+            } else if (navItem.type == 'group') {
+                html += '<a href="#">' + navItem.title + '</a><br />';
+                html += '<p><i>' + navItem.description + '</i></p>';
+                html += generInnerNavigation(navItem.children, '', level + 1);
+            }
+            html += '</li>';
+        }
+        html += '</ol></div>';
 
-		return html;
-	}
-	var html = generInnerNavigation(navigationConfig, '', 0);
+        return html;
+    }
+    var html = generInnerNavigation(navigationConfig, '', 0);
 
-	if (typeof rootElement == 'string') {
-		rootElement = document.getElementById(rootElement);
-	}
-	rootElement.innerHTML = html;
+    if (typeof rootElement == 'string') {
+        rootElement = document.getElementById(rootElement);
+    }
+    rootElement.innerHTML = html;
 }
 
 /**
  * Local navigation contains only list of pages in currently selected demo.
  */
 function showPersooDemoLocalNavigation(){
-	var localNavDiv = document.getElementById('localNavigation');
+    var localNavDiv = document.getElementById('localNavigation');
     localNavDiv.className += ' well';
     localNavDiv.style.padding = '8px 0';
 
-	var navConfig = persooDemo.localNavigation;
-	var navHTML = '<ul class="nav nav-list">' +
-				  '<li class="nav-header">This demo pages</li>';
-	var active;
-	var uniqueID=1;
-	for(var item in navConfig){
-		if( navConfig.hasOwnProperty(item) ){
-			if( typeof navConfig[item] === 'string' ){
-				// add item
-				active = ( matchFilenameInUrl(document.URL, navConfig[item])  ? ' class="active"' : '');
-				navHTML += '<li'+ active +'><a href="' + navConfig[item] + '">' + item + '</a></li>';
-			} else if( typeof navConfig[item] === 'object' ){
-				// add sub section
+    var navConfig = persooDemo.localNavigation;
+    var navHTML = '<ul class="nav nav-list">' +
+                  '<li class="nav-header">This demo pages</li>';
+    var active;
+    var uniqueID=1;
+    for(var item in navConfig){
+        if( navConfig.hasOwnProperty(item) ){
+            if( typeof navConfig[item] === 'string' ){
+                // add item
+                active = ( matchFilenameInUrl(document.URL, navConfig[item])  ? ' class="active"' : '');
+                navHTML += '<li'+ active +'><a href="' + navConfig[item] + '">' + item + '</a></li>';
+            } else if( typeof navConfig[item] === 'object' ){
+                // add sub section
 
 
-				var subNavHTML = "",
-                	subConfig = navConfig[item],
-                	activeSubNav = false;
+                var subNavHTML = "",
+                    subConfig = navConfig[item],
+                    activeSubNav = false;
                 for(var subitem in subConfig){
-            		if( subConfig.hasOwnProperty(subitem) ){
-            			if( typeof subConfig[subitem] === 'string' ){
-            				// add sub item
-            				active = ( matchFilenameInUrl(document.URL, subConfig[subitem])  ? ' class="active"' : '');
-            				subNavHTML += '<li' + active + '><a href="' + subConfig[subitem] + '">' + subitem + '</a></li>';
-            				if(active){ activeSubNav = true; }
-            			}
-            			// other levels are not supported
-            		}
+                    if( subConfig.hasOwnProperty(subitem) ){
+                        if( typeof subConfig[subitem] === 'string' ){
+                            // add sub item
+                            active = ( matchFilenameInUrl(document.URL, subConfig[subitem])  ? ' class="active"' : '');
+                            subNavHTML += '<li' + active + '><a href="' + subConfig[subitem] + '">' + subitem + '</a></li>';
+                            if(active){ activeSubNav = true; }
+                        }
+                        // other levels are not supported
+                    }
                 }
 
                 navHTML += '<li><a href="#" data-target="#submenu' + uniqueID + '" data-toggle="collapse"><i class="icon-chevron-right"></i>' +	item + '</a>';
@@ -224,53 +224,55 @@ function showPersooDemoLocalNavigation(){
                 uniqueID++;
                 navHTML += subNavHTML;
                 navHTML += '</ul></li>';
-			}
-		}
-	}
+            }
+        }
+    }
     navHTML += '</ul>';
 
-	localNavDiv.innerHTML = navHTML;
+    localNavDiv.innerHTML = navHTML;
 }
 
 function mountTopNavigation(headElement) {
-	if( typeof persooDemo === 'undefined' || !persooDemo.navigation){
-		// load persoo-nav-config.js
-		var configScript = document.createElement('script');
-		configScript.async = 1;
-		configScript.src = URL_ROOT + 'demo-nav-config.js';
-		function onConfigScriptLoad() {
-			showPersooDemoNavigation();
-			headElement.removeChild(configScript);
-		}
-		configScript.onload = onConfigScriptLoad;
-		headElement.appendChild(configScript);
-	} else {
-		// already loaded
-		showPersooDemoNavigation2();
-		showPersooDemoNavigation();
+    if( typeof persooDemo === 'undefined' || !persooDemo.navigation){
+        // load persoo-nav-config.js
+        var configScript = document.createElement('script');
+        configScript.async = 1;
+        configScript.src = URL_ROOT + 'demo-nav-config.js';
+        function onConfigScriptLoad() {
+            showPersooDemoNavigation();
+            headElement.removeChild(configScript);
+        }
+        configScript.onload = onConfigScriptLoad;
+        headElement.appendChild(configScript);
+    } else {
+        // already loaded
+        showPersooDemoNavigation2();
+        showPersooDemoNavigation();
 
-	}
+    }
 }
 
 function mountLocalNavigation(headElement) {
-	var localConfigScript = document.createElement('script');
-	localConfigScript.async = 1;
-	localConfigScript.src = document.URL.replace(/\/[^\/]*$/,'/') + 'local-nav-config.js';
-	function onLocalConfigScriptLoad() {
-		showPersooDemoLocalNavigation();
-		headElement.removeChild(localConfigScript);
-	}
-	localConfigScript.onload = onLocalConfigScriptLoad;
-	headElement.appendChild(localConfigScript);
+    if (!document.URL.match(/\/solutions\/$|\/excercises\/$/)) {
+        var localConfigScript = document.createElement('script');
+        localConfigScript.async = 1;
+        localConfigScript.src = document.URL.replace(/\/[^\/]*$/,'/') + 'local-nav-config.js';
+        function onLocalConfigScriptLoad() {
+            showPersooDemoLocalNavigation();
+            headElement.removeChild(localConfigScript);
+        }
+        localConfigScript.onload = onLocalConfigScriptLoad;
+        headElement.appendChild(localConfigScript);
+    }
 }
 
 function mountNavigationCSS(headElement) {
-	var link = document.createElement('link');
-	link.rel = 'stylesheet';
-	link.type = 'text/css';
-	link.href = URL_ROOT + '../common/persoo-demo-all.css';
-	link.media = 'all';
-	headElement.appendChild(link);
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = URL_ROOT + 'common/persoo-demo-all.css';
+    link.media = 'all';
+    headElement.appendChild(link);
 }
 
 
@@ -285,7 +287,7 @@ mountLocalNavigation(headElement);
 
 /*Footer*/
 $(function footer(){
-	var footerElement = document.getElementById('footerElement');
-	var footerContainer = '<span>&copy; Persoo.cz 2016</span>';
-	footerElement.innerHTML = footerContainer;
+    var footerElement = document.getElementById('footerElement');
+    var footerContainer = '<span>&copy; Persoo.cz 2016</span>';
+    footerElement.innerHTML = footerContainer;
 });
