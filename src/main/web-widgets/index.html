@@ -51,7 +51,7 @@
                 <!--Body content-->
                 <h1>Pop-ups demo</h1>
 
-                <p>This demonstrates Pop-up widgets and their targeting in Persoo.
+                <p>This demonstrates Pop-up widgets and their targeting possibilities in Persoo.
                 </p>
 
                 <div class="row-fluid col2">
@@ -59,7 +59,11 @@
                     <div class="instructions">
                       <h2>Instructions</h2>
                       <ol>
-                        <li>Click buttons to preview different Pop-ups.</li>
+                        <li>Click buttons to preview different Pop-up variants.</li>
+                        <li>Try to close browser window to trigger exit intent pop-up.
+                            Here we set no capping on exit intent pop-up,
+                            so you can try it as many times as you need.
+                            The only restriction is that it appears at most once on each pageview.</li>
                       </ol>
                     </div>
                   </div>
@@ -68,10 +72,14 @@
                         <h2>Demo Pop-ups</h2>
 
                         <button id="d05762bc5f784aa199e271fffe836c34" class="trigger-widget-demo" >Pop-up (collect email)</button><br \>
+                        <!--
+                        <button id="eefd75e426e740e4a0155c07a35ee260" class="trigger-widget-demo" >Pop-up (call to action)</button><br \>
+                        -->
+                        <button id="c6e5a7d8eee143288b4cccb039d3e504" class="trigger-widget-demo" >Pop-up (custom HTML with background + show after 3 sec)</button><br \>
 
-                        <button>Pop-up (exit intent)</button> -- just try to close this browser<br \>
+                        <button id="b76ce91562c54ece9f504a0c5a073924" class="trigger-widget-demo" >Pop-up (with full overlay)</button><br \>
 
-                        <button id="c6e5a7d8eee143288b4cccb039d3e504" class="trigger-widget-demo" >Pop-up (show after 3 sec)</button><br \>
+                        <button id="d73962a00e274c11ac8d3e28587ba03d" class="trigger-widget-demo" >Pop-up (bottom right pop-up)</button><br \>
 
                         <script>
                             function getReportInteractionToPersoo(widgetID) {
