@@ -288,6 +288,6 @@ mountLocalNavigation(headElement);
 /*Footer*/
 $(function footer(){
     var footerElement = document.getElementById('footerElement');
-    var footerContainer = '<span>&copy; Persoo.cz 2016</span>';
+    var footerContainer = '<span>&copy; Persoo.cz 2017</span>';
     footerElement.innerHTML = footerContainer;
 });

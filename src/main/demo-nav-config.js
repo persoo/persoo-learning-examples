@@ -34,9 +34,21 @@ persooDemo.navigationConfig = [
     },
     {
         type: 'demo',
+        title: 'Search results',
+        description: 'Personalized lightining fast search results.',
+        url: 'search-results'
+    },
+    {
+        type: 'demo',
         title: 'Web widgets (Pop-ups and brothers)',
         description: 'Display various offers to targeted audience in the right time.',
         url: 'web-widgets'
+    },
+    {
+        type: 'demo',
+        title: 'Push Notifications (One signal integration)',
+        description: 'FIXME text',
+        url: 'one-signal-integration'
     }
 ];
 persooDemo.navigation = {

@@ -1,0 +1,147 @@
+#main {
+	margin: 20px;
+}
+.breadcrumb {
+    margin-bottom: 20px;
+}
+.debug.hide {
+    display: none;
+}
+span.link {
+	text-decoration: underline;
+	color: blue;
+}
+.clear {
+	clear: both;
+}
+.clear-right {
+    clear: right;
+}
+
+.infobox {
+	background-color: lightblue;
+}
+.basketBox {
+	padding: 5px;
+	background-color: lightgreen;
+}
+.button {
+	padding: 5px;
+	background-color: lightskyblue;
+	border: 1px solid blue;
+	width: 50px;
+}
+.button.basket {
+    float: right;
+    margin: 5px;
+    padding: 5px;
+    background-color: lightskyblue;
+    border: 1px solid blue;
+    width: 100px;
+}
+pre.basket {
+	float: left;
+}
+
+/* product detail */
+#box-detail .main-image {
+	float:left;
+}
+#box-detail .main-image img {
+    max-width: 400px;
+    max-height: 400px;
+}
+#box-detail > .main-info {
+	background-color: lightblue;
+	padding: 20px;
+    float:right;
+}
+#box-detail .more-info {
+    clear:both;
+}
+#box-detail .more-info .editor {
+    height: 400px;
+}
+
+
+/* product card */
+.productCard {
+	border: 1px solid lightgrey;
+	padding: 10px;
+  width: 33.33333%;
+	height: 439px;
+	float:left;
+	overflow: hidden;
+}
+.productCard .image {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+.productCard img {
+	max-width: 200px;
+	max-height: 200px;
+}
+.productCard .name {
+    margin-bottom: 20px;
+    font-weight: bold;
+		max-height: 40px;
+		overflow: hidden;
+}
+
+
+/* product mini card */
+.mini-products {
+	display: inline-block;
+	text-align: center;
+  font-size: 30px;
+	clear: both;
+  color: white;
+  width:50%;
+  cursor: pointer;
+  text-decoration: none;
+	padding: 0 5px;
+}
+
+.mini-products h2{
+	background-color: #00CDAC;
+  font-size: 0.9em;
+	margin: 0;
+	padding: 5px;
+}
+.mini-products h2:hover{
+	background-color: #88D3AB;;
+}
+.productMiniCard {
+    border: 1px solid lightgrey;
+    padding: 10px;
+
+    width: 125px;
+    height: 200px;
+    float:left;
+    overflow: hidden;
+}
+.productMiniCard .image {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+.productMiniCard img {
+    max-width: 100px;
+    max-height: 100px;
+}
+.productMiniCard .name {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+/* category list */
+#category-tree {
+	float:left;
+	width: 20%;
+}
+#category-product-list {
+	float:right;
+	width: 78%
+}

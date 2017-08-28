@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Persoo Demo Template</title>
+    <title>Persoo Search Results</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +9,23 @@
     <link href="../img/favicon.png" rel="icon" type="image/png">
     <link href="../../common/persoo-demo-all.css" rel="stylesheet" media="screen">
     <script src="../../common/persoo-demo-all.js" type="text/javascript"></script>
+    <script>
+        // just for developement before release to production
+        QueryString.persooAccountID = 'g8i7fdao17r5fpn2u72ph4rd';
+        QueryString.persooScriptsHostname = '//s3-eu-west-1.amazonaws.com/cz.persoo.test-a.javascripts/';
+        QueryString.rtpHostname = 'rtp-test-a.persoo.cz';
+    </script>
     <script src="../globalConfig.js" type="text/javascript"></script>
 
-    <script type='text/javascript'>
-        var dataLayer = [{
-            pageType: 'basket';
-        }];
+    <link href="style.css" rel="stylesheet" media="screen">
 
+    <!-- persooSolutionStart -->
+    <script type='text/javascript'>
         var persooConfig = {
             apikey: persooAccountID, // variable from globalConfig.js
             persooName: 'persoo',
             dataLayerName: 'dataLayer', // we recommend to share dataLayer with GTM to measure new events to all systems
+            scriptsHostname: persooScriptsHostname,
             settings_tolerance: 2000,  // for loading persoo.js
             personalizations_tolerance: 2500,    // for showing personalizations
         };
@@ -39,43 +45,16 @@
         d.scriptsHostname||'http://scripts.persoo.cz/')+d.apikey+'/'+h;this.loadScript(i+'/actions.js'),
         this.loadScript(i+'/persoo.js')}}}(document,window,!1,persooConfig,'persooEnvironment');persooLoader.init();
     </script>
+    <!-- persooSolutionEnd -->
 
 </head>
 <body>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="col-md-2" id="localNavigation">
-                <!--Sidebar content-->
-            </div>
-            <div class="col-md-10 content">
                 <!--Body content-->
-                <h1>First page title</h1>
+                <h1>Search Results</h1>
 
-
-                <p>Some description of a demo.
-                </p>
-                <p>More instructions, as you need. References to documentation, etc.
-                </p>
-
-                <div class="row-fluid">
-                    <div class="col-md-6">
-                      <div class="instructions">
-                        <h2>Instructions</h2>
-                        <ol>
-                          <li><div>1</div><div><span>Do step one.</span></div></li>
-                          <li><div>2</div><div><span>Do step two</span></div></li>
-                          <li><div>2</div><div><span><a href="#" class="btn btn-default" onclick="persoo('send', 'click')">Click</a> this button at least three times to see ...</span></div></li>
-                        </ol>
-                      </div>
-                    </div>
-                    <div class="col-md-6" id="targetedActions">
-                      <div class="script">
-                        <h2>Here you see the results of your actions</h2>
-                        <pre>Nejsou zde data</pre>
-                      </div>
-                    </div>
-                </div>
-            </div>
+                <div id="searchResultsContainer"></div>
         </div>
     </div>
     <footer id="footerElement">

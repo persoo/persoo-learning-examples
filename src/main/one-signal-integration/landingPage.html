@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Persoo Demo Template</title>
+    <title>Persoo OneSignal integration - landing page</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +11,10 @@
     <script src="../../common/persoo-demo-all.js" type="text/javascript"></script>
     <script src="../globalConfig.js" type="text/javascript"></script>
 
-    <script type='text/javascript'>
-        var dataLayer = [{
-            pageType: 'basket';
-        }];
+    <link href="style.css" rel="stylesheet" media="screen">
 
+    <!-- persooSolutionStart -->
+    <script type='text/javascript'>
         var persooConfig = {
             apikey: persooAccountID, // variable from globalConfig.js
             persooName: 'persoo',
@@ -39,7 +38,29 @@
         d.scriptsHostname||'http://scripts.persoo.cz/')+d.apikey+'/'+h;this.loadScript(i+'/actions.js'),
         this.loadScript(i+'/persoo.js')}}}(document,window,!1,persooConfig,'persooEnvironment');persooLoader.init();
     </script>
+    <!-- persooSolutionEnd -->
 
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+      <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(["init", {
+          appId: "2da6a8bc-8a7a-46a6-854f-e35c261b23f8",
+          autoRegister: false, /* Set to true to automatically prompt visitors */
+          subdomainName: 'persoo',
+          httpPermissionRequest: {
+            enable: true
+          },
+          notifyButton: {
+              enable: true /* Set to false to hide */
+          }
+        }]);
+
+        OneSignal.push(function() {
+              OneSignal.getUserId(function(userId) {
+                console.log("OneSignal User ID:", userId);
+              });
+        });
+      </script>
 </head>
 <body>
     <div class="container-fluid">
@@ -49,32 +70,28 @@
             </div>
             <div class="col-md-10 content">
                 <!--Body content-->
-                <h1>First page title</h1>
+                <h1>You have succesfully landed on landing page</h1>
 
-
-                <p>Some description of a demo.
-                </p>
-                <p>More instructions, as you need. References to documentation, etc.
+                <p>This is landing page for sample push notification.
                 </p>
 
-                <div class="row-fluid">
-                    <div class="col-md-6">
-                      <div class="instructions">
-                        <h2>Instructions</h2>
-                        <ol>
-                          <li><div>1</div><div><span>Do step one.</span></div></li>
-                          <li><div>2</div><div><span>Do step two</span></div></li>
-                          <li><div>2</div><div><span><a href="#" class="btn btn-default" onclick="persoo('send', 'click')">Click</a> this button at least three times to see ...</span></div></li>
-                        </ol>
-                      </div>
+                <div class="row-fluid col2">
+                  <div class="col-md-6">
+                    <div class="instructions">
+                      <h2>Instructions</h2>
+                      <ol>
+                        <li>Now you can have the same functionality on your own website.</li>
+                      </ol>
                     </div>
-                    <div class="col-md-6" id="targetedActions">
-                      <div class="script">
-                        <h2>Here you see the results of your actions</h2>
-                        <pre>Nejsou zde data</pre>
-                      </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row-fluid preview">
+                        <h2>Data passed with push notification</h2>
+                        <div>Nothing.</div>
                     </div>
+                  </div>
                 </div>
+
             </div>
         </div>
     </div>
